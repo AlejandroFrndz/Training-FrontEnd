@@ -3,8 +3,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { AiFillHome as HomeIcon } from "react-icons/ai";
 import CharacterService from "./services/characters.service";
 import CharacterData from "./types/character.type";
+import { useState, useEffect } from "react";
+import CharactersContainer from "./containers/Characters.container";
 
 const App: React.FC = () =>  {
+  const [characters,setCharacters] = useState<CharacterData[]>([]);
+  const [error,setError] = useState<boolean>(false);
+  const [loading,setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+
+    const getCharacters = async () => {
+      try{
+        const res = await CharacterService.getAll();
+        setCharacters(res.data);
+      } catch (error) {
+        console.log(error);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    getCharacters();
+    
+  }, [])
+
   return (
     <Router>
       <nav className="navbar">
@@ -27,11 +51,13 @@ const App: React.FC = () =>  {
         </Route>
 
         <Route exact path="/characters" >
-          <h1>CHARACTERS</h1>
+          {error ? <h1>Couldn't get characters from server. Please try reloading the page</h1> :
+          <CharactersContainer characters={characters} loading={loading}/>}
         </Route>
 
         <Route path="/characters/:id" >
-          <h1>SOME CHARACTER</h1>
+          {error ? <h1>Couldn't get characters from server. Please try reloading the page</h1> :
+          <CharactersContainer characters={characters} loading={loading}/>}
         </Route>
 
         <Route exact path="/add" >

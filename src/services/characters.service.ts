@@ -5,31 +5,36 @@ class CharactersService {
     private resource : string;
 
     constructor() {
-        this.resource = "/characters/";
+        this.resource = "/characters";
     }
 
     getAll() {
-        return http.get(this.resource);
+        return http.get<CharacterData[]>(`${this.resource}?_sort=id&_order=asc`);
     }
 
     get(id : number | string) {
-        return http.get(this.resource + id.toString());
+        return http.get<CharacterData>(`${this.resource}/${id}`);
+        
     }
 
     create(data : CharacterData) {
-        return http.post(this.resource,data);
+        return http.post<CharacterData>(this.resource,data);
     }
 
     update(data : CharacterData, id : number | string) {
-        return http.put(this.resource + id.toString(), data);
+        return http.put<CharacterData>(`${this.resource}/${id}`, data);
     }
 
     delete(id : number | string) {
-        return http.delete(this.resource + id.toString());
+        return http.delete(`${this.resource}/${id}`);
     }
 
     deleteAll() {
         return http.delete(this.resource);
+    }
+
+    findByName(name : string) {
+        return http.get<CharacterData[]>(`${this.resource}?name_like=${name}`);
     }
 }
 
