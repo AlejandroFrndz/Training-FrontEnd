@@ -25,13 +25,17 @@ const CharactersContainer: React.FC<Props> = (props) => {
     if(loading){
         return <Loader type="TailSpin"/>
     }
+
+    const onGoBack = () => {
+        history.goBack();
+    }
     
     if(id){
         const character = characters[Number(id) - 1];
-        return <CharacterDetail character={character} />
+        return <CharacterDetail character={character} onGoBack={onGoBack}/>
     }
     else{
-        return <CharactersList characters={characters} />;
+        return <CharactersList characters={characters} onGoBack={onGoBack}/>;
     }
 }
 
