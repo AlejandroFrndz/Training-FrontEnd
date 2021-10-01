@@ -1,0 +1,51 @@
+@keyframes glowing {
+    0% {
+      background-color: #c71818dc;
+      box-shadow: 0 0 3px #e71d1d;
+      opacity: 0%;
+    }
+    50% {
+      background-color: #c71818dc;
+      box-shadow: 0 0 10px #e71d1d;
+      opacity: 100%;
+    }
+    100% {
+      background-color: #c71818dc;
+      box-shadow: 0 0 3px #e71d1d;
+      opacity: 0%;
+    }
+  }
+
+#aliveLight {
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    border: none;
+    padding: 7px 7px;
+    background-color: #2ba805;
+    box-shadow: 0 0 10px #2ba805;
+}
+
+#deadLight {
+    -webkit-border-radius: 60px;
+    border-radius: 60px;
+    border: none;
+    padding: 7px 7px;
+    animation: glowing 1300ms infinite;
+}
+
+.flexImg {
+    max-width: 100%;
+    height: auto;
+}
+
+.dispInline {
+    display: inline;
+}
+
+.spacer {
+    width: 5px;
+}
+
+.mt {
+    margin-top: 2%;
+}
