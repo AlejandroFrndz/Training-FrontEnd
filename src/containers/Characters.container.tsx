@@ -6,7 +6,9 @@ import Loader from 'react-loader-spinner';
 
 interface Props {
     characters: CharacterData[],
-    loading: boolean
+    loading: boolean,
+    loadingKill: boolean,
+    onKill: (character: CharacterData) => Promise<void>
 }
 
 interface Params {
@@ -14,13 +16,9 @@ interface Params {
 }
 
 const CharactersContainer: React.FC<Props> = (props) => {
-    const { characters, loading } = props;
+    const { characters, loading, loadingKill, onKill } = props;
     const { id } = useParams<Params>();
     const history = useHistory();
-
-    if(id && characters.length === 0){
-        history.push("/characters");
-    }
 
     if(loading){
         return <Loader type="TailSpin"/>
@@ -31,8 +29,25 @@ const CharactersContainer: React.FC<Props> = (props) => {
     }
     
     if(id){
-        const character = characters[Number(id) - 1];
-        return <CharacterDetail character={character} onGoBack={onGoBack}/>
+        let character;
+        for(let item of characters){
+            if(item.id === Number(id)){
+                character = item;
+                break;
+            }
+        }
+
+        if(typeof character !== 'undefined'){
+            return <CharacterDetail 
+            character={character} 
+            onGoBack={onGoBack} 
+            onKill={onKill}
+            loadingKill={loadingKill}/>
+        }
+        else{
+            history.push("/characters");
+            return <></>
+        }
     }
     else{
         return <CharactersList characters={characters} onGoBack={onGoBack}/>;

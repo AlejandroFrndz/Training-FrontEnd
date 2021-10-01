@@ -44,6 +44,15 @@
       "type": "",
       "gender": "Male",
       "image": "https://rickandmortyapi.com/api/character/avatar/5.jpeg"
+    },
+    {
+      "id": 96,
+      "name": "Tuberculosis",
+      "status": "Dead",
+      "species": "Disease",
+      "type": "",
+      "gender": "unknown",
+      "image": "https://rickandmortyapi.com/api/character/avatar/96.jpeg"
     }
   ]
 }

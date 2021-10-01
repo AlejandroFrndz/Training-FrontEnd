@@ -10,6 +10,7 @@ const App: React.FC = () =>  {
   const [characters,setCharacters] = useState<CharacterData[]>([]);
   const [error,setError] = useState<boolean>(false);
   const [loading,setLoading] = useState<boolean>(true);
+  const [loadingKill,setLoadingKill] = useState<boolean>(false);
 
   useEffect(() => {
 
@@ -28,6 +29,33 @@ const App: React.FC = () =>  {
     getCharacters();
     
   }, [])
+
+  const onKillCharacter = async (character: CharacterData) => {
+    setLoadingKill(true);
+    if(character.status === "Alive"){
+      character.status = "Dead";
+    }
+    else{
+      character.status = "Alive";
+    }
+
+    try {
+      await CharacterService.update(character,character.id);
+      setCharacters(characters.map((item) => {
+        if(item.id === character.id){
+          return character;
+        }
+        else{
+          return item;
+        }
+      }));
+    } catch (error){
+      console.log(error);
+      setError(true);
+    } finally {
+      setLoadingKill(false);
+    }
+  }
 
   return (
     <Router>
@@ -52,12 +80,12 @@ const App: React.FC = () =>  {
 
         <Route exact path="/characters" >
           {error ? <h1>Couldn't get characters from server. Please try reloading the page</h1> :
-          <CharactersContainer characters={characters} loading={loading}/>}
+          <CharactersContainer characters={characters} loading={loading} loadingKill={loadingKill} onKill={onKillCharacter}/>}
         </Route>
 
         <Route path="/characters/:id" >
           {error ? <h1>Couldn't get characters from server. Please try reloading the page</h1> :
-          <CharactersContainer characters={characters} loading={loading}/>}
+          <CharactersContainer characters={characters} loading={loading} loadingKill={loadingKill} onKill={onKillCharacter}/>}
         </Route>
 
         <Route exact path="/add" >
