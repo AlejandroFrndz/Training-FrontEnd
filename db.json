@@ -39,7 +39,7 @@
     {
       "id": 5,
       "name": "Jerry Smith",
-      "status": "Alive",
+      "status": "Dead",
       "species": "Human",
       "type": "",
       "gender": "Male",
@@ -53,6 +53,15 @@
       "type": "",
       "gender": "unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/96.jpeg"
+    },
+    {
+      "id": 123,
+      "name": "Fat Morty",
+      "status": "Dead",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/123.jpeg"
     }
   ]
 }
