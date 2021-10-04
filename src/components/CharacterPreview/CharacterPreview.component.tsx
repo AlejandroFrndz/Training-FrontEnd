@@ -36,6 +36,11 @@ const CharacterPreview : React.FC<Props> = (props) => {
                     <button id={status === "Alive" ? styles.aliveLight : styles.deadLight} type="button" />
                 </div>
             </div>
+            <div className="row">
+                <div className="col-12 text-center mt-2">
+                    <h4 className="fst-italic">{status}</h4>
+                </div>
+            </div>
         </div>
     )
 }
