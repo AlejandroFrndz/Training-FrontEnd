@@ -19,8 +19,6 @@ const CharacterDetail: React.FC<Props> = (props) => {
     onKill(character);
   };
 
-  let useless = 4;
-
   return (
     <div className="character">
       <h1>{character.name}</h1>
