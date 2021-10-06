@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  NavLink,
-  Switch,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { AiFillHome as HomeIcon } from 'react-icons/ai';
 import CharacterData from './types/character.type';
 import { useEffect } from 'react';
 import CharactersContainer from './containers/Characters.container';
@@ -16,6 +10,8 @@ import {
   updateCharacter
 } from './redux/actions/charactersActions';
 import { State } from './redux/reducers/rootReducer';
+import Header from './components/Header/Header.component';
+import backgroundImage from './assets/images/rick-and-morty-wallpaper-portal-wallpaper-001.jpg';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -50,19 +46,7 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <nav className="navbar">
-        <NavLink to={'/'}>
-          <HomeIcon />
-        </NavLink>
-
-        <NavLink to={'/characters'}>
-          <h4>Characters</h4>
-        </NavLink>
-
-        <NavLink to={'/add'}>
-          <h4>Add</h4>
-        </NavLink>
-      </nav>
+      <Header />
 
       <Switch>
         <Route exact path="/">

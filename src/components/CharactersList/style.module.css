@@ -1,12 +1,12 @@
 .charWrapper {
-    border: 1px solid rgb(145, 106, 1);
-    border-radius: 20px;
-    background-image: url(../../assets/images/black-bg.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: white;
+  border: 1px solid rgb(145, 106, 1);
+  border-radius: 20px;
+  background-image: url(../../assets/images/black-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
 
 .overrideWidth {
-    width: 32% !important;
+  width: 32% !important;
 }

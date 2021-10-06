@@ -24,7 +24,7 @@ const CharactersList: React.FC<Props> = (props) => {
                 >
                   <Link
                     to={`/characters/${character.id}`}
-                    className="text-decoration-none text-reset"
+                    className={`text-decoration-none text-reset`}
                   >
                     <CharacterPreview
                       name={character.name}

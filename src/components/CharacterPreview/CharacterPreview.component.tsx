@@ -20,7 +20,7 @@ const CharacterPreview: React.FC<Props> = (props) => {
   }
 
   return (
-    <div className={`charPreview container`}>
+    <div className={`${styles.charPreview} container`}>
       <div className="row">
         <div className="col-12">
           <h2 className={`text-center ${wordBreak ? 'text-break' : ''}`}>

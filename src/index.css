@@ -1,3 +1,13 @@
+html {
+  min-height: 100%;
+  background-image: url('./assets/images/rick-and-morty-wallpaper-portal-wallpaper-001.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 body {
-    background-color: #e9ecef !important;
+  background-color: transparent !important;
+}
+
+div#root {
+  background-color: transparent;
 }

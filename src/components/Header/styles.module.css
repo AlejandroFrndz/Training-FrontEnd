@@ -1,0 +1,20 @@
+a.active {
+  background-color: greenyellow;
+  box-shadow: 0 0 10px rgb(173, 255, 47);
+  border-radius: 20px;
+  color: #000 !important;
+}
+
+.homeContainer {
+  max-width: 5%;
+  max-height: auto;
+}
+
+.homeIcon {
+  max-width: 100%;
+  max-height: auto;
+}
+
+.bgDark {
+  background-color: #000;
+}
