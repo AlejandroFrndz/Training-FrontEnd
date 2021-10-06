@@ -4,8 +4,11 @@ import { Dispatch } from 'redux';
 
 export enum ActionTypes {
   GET_CHARACTERS = 'getCharacters',
+  GET_CHARACTERS_PENDING = 'getCharactersPending',
+  GET_CHARACTERS_ERROR = 'getCharactersError',
   UPDATE_CHARACTERS = 'updateCharacter',
-  INCREASE_AMOUNT = 'increaseAmount'
+  UPDATE_CHARACTERS_PENDING = 'updateCharactersPending',
+  UPDATE_CHARACTERS_ERROR = 'updateCharactersError'
 }
 
 interface GetCharactersAction {
@@ -13,23 +16,42 @@ interface GetCharactersAction {
   payload: Character[];
 }
 
+interface GetCharactersPendingAction {
+  type: ActionTypes.GET_CHARACTERS_PENDING;
+}
+
+interface GetCharactersErrorAction {
+  type: ActionTypes.GET_CHARACTERS_ERROR;
+}
+
 interface UpdateCharacterAction {
   type: ActionTypes.UPDATE_CHARACTERS;
   payload: Character;
 }
 
-interface IncreaseAmount {
-  type: ActionTypes.INCREASE_AMOUNT;
-  payload: number;
+interface UpdateCharacterPendingAction {
+  type: ActionTypes.UPDATE_CHARACTERS_PENDING;
+}
+
+interface UpdateCharacterErrorAction {
+  type: ActionTypes.UPDATE_CHARACTERS_ERROR;
 }
 
 export type Action =
   | GetCharactersAction
+  | GetCharactersPendingAction
+  | GetCharactersErrorAction
   | UpdateCharacterAction
-  | IncreaseAmount;
+  | UpdateCharacterPendingAction
+  | UpdateCharacterErrorAction;
 
+// eslint-disable-next-line
 export const getCharacters = () => {
+  // eslint-disable-next-line
   return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionTypes.GET_CHARACTERS_PENDING
+    });
     try {
       const res = await CharactersService.getAll();
       dispatch({
@@ -38,12 +60,20 @@ export const getCharacters = () => {
       });
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: ActionTypes.GET_CHARACTERS_ERROR
+      });
     }
   };
 };
 
+// eslint-disable-next-line
 export const updateCharacter = (character: Character) => {
+  // eslint-disable-next-line
   return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionTypes.UPDATE_CHARACTERS_PENDING
+    });
     try {
       const res = await CharactersService.update(character, character.id);
       dispatch({
@@ -52,15 +82,9 @@ export const updateCharacter = (character: Character) => {
       });
     } catch (e) {
       console.log(e);
+      dispatch({
+        type: ActionTypes.UPDATE_CHARACTERS_ERROR
+      });
     }
-  };
-};
-
-export const increaseAmount = (amount: number) => {
-  return (dispatch: Dispatch<Action>) => {
-    dispatch({
-      type: ActionTypes.INCREASE_AMOUNT,
-      payload: amount
-    });
   };
 };

@@ -7,34 +7,38 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { AiFillHome as HomeIcon } from 'react-icons/ai';
-import CharacterService from './services/characters.service';
 import CharacterData from './types/character.type';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import CharactersContainer from './containers/Characters.container';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  increaseAmount,
   getCharacters,
   updateCharacter
 } from './redux/actions/charactersActions';
 import { State } from './redux/reducers/rootReducer';
 
 const App: React.FC = () => {
-  const [error, setError] = useState<boolean>(false);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [loadingKill, setLoadingKill] = useState<boolean>(false);
-
   const dispatch = useDispatch();
-  const amount = useSelector((state: State) => state.characters.characters);
+
   const characters = useSelector((state: State) => state.characters.characters);
+  const loadingGet = useSelector((state: State) => state.characters.loadingGet);
+  const errorGet = useSelector((state: State) => state.characters.errorGet);
+
+  const loadingUpdate = useSelector(
+    (state: State) => state.characters.loadingUpdate
+  );
+
+  /*
+  const errorUpdate = useSelector(
+    (state: State) => state.characters.errorUpdate
+  );
+  */
 
   useEffect(() => {
     dispatch(getCharacters());
-    setLoading(false);
   }, []);
 
   const onKillCharacter = async (character: CharacterData) => {
-    setLoadingKill(true);
     if (character.status === 'Alive') {
       character.status = 'Dead';
     } else {
@@ -42,7 +46,6 @@ const App: React.FC = () => {
     }
 
     dispatch(updateCharacter(character));
-    setLoadingKill(false);
   };
 
   return (
@@ -67,7 +70,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route exact path="/characters">
-          {error ? (
+          {errorGet ? (
             <h1>
               Couldn&apos;t get characters from server. Please try reloading the
               page
@@ -75,15 +78,15 @@ const App: React.FC = () => {
           ) : (
             <CharactersContainer
               characters={characters}
-              loading={loading}
-              loadingKill={loadingKill}
+              loading={loadingGet}
+              loadingKill={loadingUpdate}
               onKill={onKillCharacter}
             />
           )}
         </Route>
 
         <Route path="/characters/:id">
-          {error ? (
+          {errorGet ? (
             <h1>
               Couldn&apos;t get characters from server. Please try reloading the
               page
@@ -91,8 +94,8 @@ const App: React.FC = () => {
           ) : (
             <CharactersContainer
               characters={characters}
-              loading={loading}
-              loadingKill={loadingKill}
+              loading={loadingGet}
+              loadingKill={loadingUpdate}
               onKill={onKillCharacter}
             />
           )}

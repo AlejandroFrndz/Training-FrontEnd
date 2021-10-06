@@ -10,5 +10,8 @@ export interface Character {
 
 export interface State {
   characters: Character[];
-  amount: number;
+  loadingGet: boolean;
+  errorGet: boolean;
+  loadingUpdate: boolean;
+  errorUpdate: boolean;
 }

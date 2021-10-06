@@ -3,16 +3,35 @@ import { State } from '../types';
 
 const initialState: State = {
   characters: [],
-  amount: 0
+  loadingGet: false,
+  errorGet: false,
+  loadingUpdate: false,
+  errorUpdate: false
 };
 
+// eslint-disable-next-line
 const reducer = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case ActionTypes.GET_CHARACTERS:
       return {
         ...state,
-        characters: [...action.payload]
+        characters: [...action.payload],
+        loadingGet: false
       };
+
+    case ActionTypes.GET_CHARACTERS_PENDING:
+      return {
+        ...state,
+        loadingGet: true
+      };
+
+    case ActionTypes.GET_CHARACTERS_ERROR:
+      return {
+        ...state,
+        loadingGet: false,
+        errorGet: true
+      };
+
     case ActionTypes.UPDATE_CHARACTERS:
       return {
         ...state,
@@ -20,13 +39,21 @@ const reducer = (state: State = initialState, action: Action) => {
           ...state.characters.map((ele) =>
             ele.id === action.payload.id ? action.payload : ele
           )
-        ]
+        ],
+        loadingUpdate: false
       };
 
-    case ActionTypes.INCREASE_AMOUNT:
+    case ActionTypes.UPDATE_CHARACTERS_PENDING:
       return {
         ...state,
-        amount: state.amount + action.payload
+        loadingUpdate: true
+      };
+
+    case ActionTypes.UPDATE_CHARACTERS_ERROR:
+      return {
+        ...state,
+        loadingUpdate: false,
+        errorUpdate: true
       };
 
     default:

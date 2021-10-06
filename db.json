@@ -48,7 +48,7 @@
     {
       "id": 96,
       "name": "Tuberculosis",
-      "status": "Alive",
+      "status": "Dead",
       "species": "Disease",
       "type": "",
       "gender": "unknown",
@@ -57,7 +57,7 @@
     {
       "id": 123,
       "name": "Fat Morty",
-      "status": "Dead",
+      "status": "Alive",
       "species": "Human",
       "type": "",
       "gender": "Male",
