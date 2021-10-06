@@ -11,27 +11,26 @@ import CharacterService from './services/characters.service';
 import CharacterData from './types/character.type';
 import { useState, useEffect } from 'react';
 import CharactersContainer from './containers/Characters.container';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  increaseAmount,
+  getCharacters,
+  updateCharacter
+} from './redux/actions/charactersActions';
+import { State } from './redux/reducers/rootReducer';
 
 const App: React.FC = () => {
-  const [characters, setCharacters] = useState<CharacterData[]>([]);
   const [error, setError] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const [loadingKill, setLoadingKill] = useState<boolean>(false);
 
-  useEffect(() => {
-    const getCharacters = async () => {
-      try {
-        const res = await CharacterService.getAll();
-        setCharacters(res.data);
-      } catch (error) {
-        console.log(error);
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const dispatch = useDispatch();
+  const amount = useSelector((state: State) => state.characters.characters);
+  const characters = useSelector((state: State) => state.characters.characters);
 
-    getCharacters();
+  useEffect(() => {
+    dispatch(getCharacters());
+    setLoading(false);
   }, []);
 
   const onKillCharacter = async (character: CharacterData) => {
@@ -42,23 +41,8 @@ const App: React.FC = () => {
       character.status = 'Alive';
     }
 
-    try {
-      await CharacterService.update(character, character.id);
-      setCharacters(
-        characters.map((item) => {
-          if (item.id === character.id) {
-            return character;
-          } else {
-            return item;
-          }
-        })
-      );
-    } catch (error) {
-      console.log(error);
-      setError(true);
-    } finally {
-      setLoadingKill(false);
-    }
+    dispatch(updateCharacter(character));
+    setLoadingKill(false);
   };
 
   return (
