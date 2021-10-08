@@ -61,6 +61,12 @@ const reducer = (state: State = initialState, action: Action) => {
         ...state,
         characters: [...state.characters, action.payload]
       };
+
+    case ActionTypes.DELETE_CHARACTER:
+      return {
+        ...state,
+        characters: state.characters.filter((ele) => ele.id !== action.payload)
+      };
     default:
       return state;
   }

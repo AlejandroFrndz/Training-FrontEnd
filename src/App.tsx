@@ -7,7 +7,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   getCharacters,
   updateCharacter,
-  createCharacter
+  createCharacter,
+  deleteCharacter
 } from './redux/actions/charactersActions';
 import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
@@ -49,6 +50,10 @@ const App: React.FC = () => {
     dispatch(createCharacter(character));
   };
 
+  const onDeleteCharacter = async (id: number) => {
+    dispatch(deleteCharacter(id));
+  };
+
   return (
     <Router>
       <Header />
@@ -70,6 +75,7 @@ const App: React.FC = () => {
               loading={loadingGet}
               loadingKill={loadingUpdate}
               onKill={onKillCharacter}
+              onDelete={onDeleteCharacter}
             />
           )}
         </Route>
@@ -86,6 +92,7 @@ const App: React.FC = () => {
               loading={loadingGet}
               loadingKill={loadingUpdate}
               onKill={onKillCharacter}
+              onDelete={onDeleteCharacter}
             />
           )}
         </Route>

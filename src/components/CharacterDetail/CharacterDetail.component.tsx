@@ -10,13 +10,18 @@ interface Props {
   onGoBack: () => void;
   onKill: (character: Character) => Promise<void>;
   loadingKill: boolean;
+  onDelete: (id: number) => Promise<void>;
 }
 
 const CharacterDetail: React.FC<Props> = (props) => {
-  const { character, onGoBack, onKill, loadingKill } = props;
+  const { character, onGoBack, onKill, loadingKill, onDelete } = props;
 
   const handleKill = () => {
     onKill(character);
+  };
+
+  const handleDelete = () => {
+    onDelete(character.id);
   };
 
   return (
@@ -32,6 +37,9 @@ const CharacterDetail: React.FC<Props> = (props) => {
       <p>{character.status}</p>
       <button type="button" disabled={loadingKill} onClick={handleKill}>
         {character.status === 'Alive' ? <>Kill</> : <>Revive</>}
+      </button>
+      <button type="button" onClick={handleDelete}>
+        Vaporize
       </button>
       <img src={character.image} alt={character.name + 'face'} />
       <button onClick={onGoBack}>Go Back</button>
