@@ -32,7 +32,7 @@
     "eject": "react-scripts eject",
     "backend": "json-server --watch db.json --port 5000",
     "lint": "eslint . --ext .tsx",
-    "lint-and-fix": "eslint . --ext .tsx --fix",
+    "lint-and-fix": "eslint . --ext .ts,.tsx --fix",
     "prettier-format": "prettier --config .prettierrc src/**/*.tsx --write"
   },
   "eslintConfig": {
@@ -66,7 +66,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run prettier-format && npm run lint"
+      "pre-commit": "npm run prettier-format && npm run lint-and-fix"
     }
   }
 }

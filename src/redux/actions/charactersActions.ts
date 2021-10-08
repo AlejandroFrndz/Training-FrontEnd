@@ -1,5 +1,5 @@
 import CharactersService from '../../services/characters.service';
-import { Character } from '../types';
+import { Character, NewCharacter } from '../types';
 import { Dispatch } from 'redux';
 
 export enum ActionTypes {
@@ -8,7 +8,8 @@ export enum ActionTypes {
   GET_CHARACTERS_ERROR = 'getCharactersError',
   UPDATE_CHARACTERS = 'updateCharacter',
   UPDATE_CHARACTERS_PENDING = 'updateCharactersPending',
-  UPDATE_CHARACTERS_ERROR = 'updateCharactersError'
+  UPDATE_CHARACTERS_ERROR = 'updateCharactersError',
+  CREATE_CHARACTER = 'createCharacter'
 }
 
 interface GetCharactersAction {
@@ -37,13 +38,19 @@ interface UpdateCharacterErrorAction {
   type: ActionTypes.UPDATE_CHARACTERS_ERROR;
 }
 
+interface CreateCharacterAction {
+  type: ActionTypes.CREATE_CHARACTER;
+  payload: Character;
+}
+
 export type Action =
   | GetCharactersAction
   | GetCharactersPendingAction
   | GetCharactersErrorAction
   | UpdateCharacterAction
   | UpdateCharacterPendingAction
-  | UpdateCharacterErrorAction;
+  | UpdateCharacterErrorAction
+  | CreateCharacterAction;
 
 // eslint-disable-next-line
 export const getCharacters = () => {
@@ -86,5 +93,17 @@ export const updateCharacter = (character: Character) => {
         type: ActionTypes.UPDATE_CHARACTERS_ERROR
       });
     }
+  };
+};
+
+// eslint-disable-next-line
+export const createCharacter = (newCharacter: NewCharacter) => {
+  // eslint-disable-next-line
+  return async (dispatch: Dispatch<Action>) => {
+    const res = await CharactersService.create(newCharacter);
+    dispatch({
+      type: ActionTypes.CREATE_CHARACTER,
+      payload: res.data
+    });
   };
 };

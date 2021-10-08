@@ -56,6 +56,11 @@ const reducer = (state: State = initialState, action: Action) => {
         errorUpdate: true
       };
 
+    case ActionTypes.CREATE_CHARACTER:
+      return {
+        ...state,
+        characters: [...state.characters, action.payload]
+      };
     default:
       return state;
   }

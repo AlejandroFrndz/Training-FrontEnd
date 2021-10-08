@@ -1,15 +1,15 @@
 import React from 'react';
-import CharacterData from '../types/character.type';
+import { Character } from '../redux/types';
 import CharacterDetail from '../components/CharacterDetail/CharacterDetail.component';
 import { useParams, useHistory } from 'react-router-dom';
 import CharactersList from '../components/CharactersList/CharactersList.component';
 import Loader from 'react-loader-spinner';
 
 interface Props {
-  characters: CharacterData[];
+  characters: Character[];
   loading: boolean;
   loadingKill: boolean;
-  onKill: (character: CharacterData) => Promise<void>;
+  onKill: (character: Character) => Promise<void>;
 }
 
 interface Params {

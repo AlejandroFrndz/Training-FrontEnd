@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CharacterData from '../../types/character.type';
+import { Character } from '../../redux/types';
 import CharacterPreview from '../CharacterPreview/CharacterPreview.component';
 import styles from './style.module.css';
 
 interface Props {
-  characters: CharacterData[];
+  characters: Character[];
   onGoBack: () => void;
 }
 

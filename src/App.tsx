@@ -1,17 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CharacterData from './types/character.type';
 import { useEffect } from 'react';
 import CharactersContainer from './containers/Characters.container';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   getCharacters,
-  updateCharacter
+  updateCharacter,
+  createCharacter
 } from './redux/actions/charactersActions';
 import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
-import backgroundImage from './assets/images/rick-and-morty-wallpaper-portal-wallpaper-001.jpg';
+import AddCharacterContainer from './containers/AddCharacter.container';
+import { Character, NewCharacter } from './redux/types';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const App: React.FC = () => {
     dispatch(getCharacters());
   }, []);
 
-  const onKillCharacter = async (character: CharacterData) => {
+  const onKillCharacter = async (character: Character) => {
     if (character.status === 'Alive') {
       character.status = 'Dead';
     } else {
@@ -42,6 +43,10 @@ const App: React.FC = () => {
     }
 
     dispatch(updateCharacter(character));
+  };
+
+  const onAddCharacter = async (character: NewCharacter) => {
+    dispatch(createCharacter(character));
   };
 
   return (
@@ -86,7 +91,7 @@ const App: React.FC = () => {
         </Route>
 
         <Route exact path="/add">
-          <h1>ADD</h1>
+          <AddCharacterContainer onAddCharacter={onAddCharacter} />
         </Route>
       </Switch>
     </Router>

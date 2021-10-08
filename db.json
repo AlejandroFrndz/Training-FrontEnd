@@ -62,6 +62,24 @@
       "type": "",
       "gender": "Male",
       "image": "https://rickandmortyapi.com/api/character/avatar/123.jpeg"
+    },
+    {
+      "name": "Bill",
+      "status": "Alive",
+      "species": "Human",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/45.jpeg",
+      "type": "",
+      "id": 124
+    },
+    {
+      "name": "Bootleg Portal Chemist Rick",
+      "status": "Dead",
+      "species": "Human",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/56.jpeg",
+      "type": "",
+      "id": 125
     }
   ]
 }

@@ -1,14 +1,14 @@
 import React from 'react';
-import CharacterData from '../../types/character.type';
+import { Character } from '../../redux/types';
 import {
   AiOutlineExclamationCircle,
   AiOutlineCheckCircle
 } from 'react-icons/ai';
 
 interface Props {
-  character: CharacterData;
+  character: Character;
   onGoBack: () => void;
-  onKill: (character: CharacterData) => Promise<void>;
+  onKill: (character: Character) => Promise<void>;
   loadingKill: boolean;
 }
 
