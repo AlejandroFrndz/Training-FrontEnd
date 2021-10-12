@@ -81,11 +81,10 @@ const CharactersContainer: React.FC<Props> = (props) => {
       );
     } else {
       history.push('/characters');
-      return <></>;
     }
-  } else {
-    return <CharactersList characters={characters} onGoBack={onGoBack} />;
   }
+
+  return <CharactersList characters={characters} onGoBack={onGoBack} />;
 };
 
 export default CharactersContainer;

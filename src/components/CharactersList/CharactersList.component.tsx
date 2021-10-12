@@ -14,7 +14,7 @@ const CharactersList: React.FC<Props> = (props) => {
 
   return (
     <div className="container">
-      <div className="row justify-content-center">
+      <div className="row justify-content-center" data-testid="innerDiv">
         {characters.length > 0
           ? characters.map((character) => {
               return (

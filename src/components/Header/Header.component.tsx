@@ -13,13 +13,22 @@ const Header: React.FC = () => {
         exact
         to={'/'}
         className={`${styles.homeContainer} nav-brand ms-4 text-white font-weight-bold text-decoration-none`}
+        data-testid="toHome"
       >
         <Switch>
           <Route exact path="/">
-            <img src={HomeIconActive} className={`${styles.homeIcon}`} />
+            <img
+              src={HomeIconActive}
+              className={`${styles.homeIcon}`}
+              data-testid="activeHomeIcon"
+            />
           </Route>
           <Route path="/">
-            <img src={HomeIcon} className={`${styles.homeIcon}`} />
+            <img
+              src={HomeIcon}
+              className={`${styles.homeIcon}`}
+              data-testid="inactiveHomeIcon"
+            />
           </Route>
         </Switch>
       </NavLink>
@@ -28,6 +37,7 @@ const Header: React.FC = () => {
         to={'/characters'}
         className="nav-item text-white font-weight-bold text-decoration-none p-2"
         activeClassName={styles.active}
+        data-testid="toCharacters"
       >
         <h4>Characters</h4>
       </NavLink>
@@ -36,6 +46,7 @@ const Header: React.FC = () => {
         to={'/add'}
         className="nav-item me-4 text-white font-weight-bold text-decoration-none p-2"
         activeClassName={styles.active}
+        data-testid="toAdd"
       >
         <h4>Add</h4>
       </NavLink>

@@ -44,7 +44,7 @@ const AddCharacter: React.FC<Props> = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} data-testid="form">
       <div className="form-group mb-2">
         <label htmlFor="name" className="ps-1 pe-1 h4">
           Name
@@ -58,6 +58,7 @@ const AddCharacter: React.FC<Props> = (props) => {
           required
           value={name}
           onChange={(target) => setName(target.currentTarget.value)}
+          data-testid="nameInput"
         />
       </div>
 
@@ -79,6 +80,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             value="Alive"
             checked={status === 'Alive'}
             onChange={(target) => setStatus(target.currentTarget.value)}
+            data-testid="statusAliveInput"
           />
         </div>
 
@@ -94,6 +96,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             checked={status === 'Dead'}
             value="Dead"
             onChange={(target) => setStatus(target.currentTarget.value)}
+            data-testid="statusDeadInput"
           />
         </div>
       </div>
@@ -110,6 +113,7 @@ const AddCharacter: React.FC<Props> = (props) => {
           className="form-control"
           value={species}
           onChange={(target) => setSpecies(target.currentTarget.value)}
+          data-testid="speciesInput"
         />
       </div>
 
@@ -131,6 +135,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             value="Female"
             checked={gender === 'Female'}
             onChange={(target) => setGender(target.currentTarget.value)}
+            data-testid="genderFemaleInput"
           />
         </div>
 
@@ -146,6 +151,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             value="Male"
             checked={gender === 'Male'}
             onChange={(target) => setGender(target.currentTarget.value)}
+            data-testid="genderMaleInput"
           />
         </div>
 
@@ -164,6 +170,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             value="Unknown"
             checked={gender === 'Unknown'}
             onChange={(target) => setGender(target.currentTarget.value)}
+            data-testid="genderUnknownInput"
           />
         </div>
       </div>
@@ -181,6 +188,7 @@ const AddCharacter: React.FC<Props> = (props) => {
           required
           value={image}
           onChange={(target) => setImage(target.currentTarget.value)}
+          data-testid="imageInput"
         />
       </div>
 
