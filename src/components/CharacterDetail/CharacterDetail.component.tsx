@@ -38,7 +38,7 @@ const CharacterDetail: React.FC<Props> = (props) => {
       <button type="button" disabled={loadingKill} onClick={handleKill}>
         {character.status === 'Alive' ? <>Kill</> : <>Revive</>}
       </button>
-      <button type="button" onClick={handleDelete}>
+      <button type="button" onClick={handleDelete} id="deleteButton">
         Vaporize
       </button>
       <img src={character.image} alt={character.name + 'face'} />

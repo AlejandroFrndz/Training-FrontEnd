@@ -21,6 +21,7 @@ const CharactersList: React.FC<Props> = (props) => {
                 <div
                   key={character.id}
                   className={`col-4 me-2 mb-2 pb-3 ${styles.charWrapper} ${styles.overrideWidth}`}
+                  id={`character_${character.id}`}
                 >
                   <Link
                     to={`/characters/${character.id}`}

@@ -1,15 +1,6 @@
 {
   "characters": [
     {
-      "id": 10,
-      "name": "Rick Sanchez",
-      "status": "Dead",
-      "species": "Human",
-      "type": "",
-      "gender": "Male",
-      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-    },
-    {
       "id": 20,
       "name": "Morty Smith",
       "status": "Alive",
@@ -71,6 +62,15 @@
       "image": "https://rickandmortyapi.com/api/character/avatar/56.jpeg",
       "type": "",
       "id": 1250
+    },
+    {
+      "name": "Rick Sanchez",
+      "status": "Dead",
+      "species": "Human",
+      "type": "",
+      "gender": "Male",
+      "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+      "id": 1251
     }
   ]
 }

@@ -60,7 +60,7 @@ const App: React.FC = () => {
 
       <Switch>
         <Route exact path="/">
-          <h1>HOME</h1>
+          <h1 id="HomeText">HOME</h1>
         </Route>
 
         <Route exact path="/characters">
