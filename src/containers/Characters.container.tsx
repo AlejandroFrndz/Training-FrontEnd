@@ -6,7 +6,7 @@ import CharactersList from '../components/CharactersList/CharactersList.componen
 import Loader from 'react-loader-spinner';
 import swal from 'sweetalert';
 
-interface Props {
+export interface Props {
   characters: Character[];
   loading: boolean;
   loadingKill: boolean;

@@ -3,7 +3,9 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { Router, Route } from 'react-router-dom';
-import CharactersContainer from '../../containers/Characters.container';
+import CharactersContainer, {
+  Props
+} from '../../containers/Characters.container';
 import { Character } from '../../redux/types';
 
 describe('<CharactersContainer />', () => {
@@ -14,9 +16,27 @@ describe('<CharactersContainer />', () => {
   const onDelete = jest.fn(async (id: number) => {
     id;
   });
+  let props: Props;
 
   beforeEach(() => {
     history = createMemoryHistory();
+    props = {
+      characters: [
+        {
+          id: 1,
+          name: 'Rick Sanchez',
+          status: 'Dead',
+          species: 'Human',
+          type: '',
+          gender: 'Male',
+          image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
+        }
+      ],
+      loading: false,
+      loadingKill: false,
+      onKill: onKill,
+      onDelete: onDelete
+    };
   });
 
   test('If a character route and character data are provided, it should display the detail', () => {
@@ -25,23 +45,7 @@ describe('<CharactersContainer />', () => {
     render(
       <Router history={history}>
         <Route path="/characters/:id">
-          <CharactersContainer
-            characters={[
-              {
-                id: 1,
-                name: 'Rick Sanchez',
-                status: 'Dead',
-                species: 'Human',
-                type: '',
-                gender: 'Male',
-                image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
-              }
-            ]}
-            loading={false}
-            loadingKill={false}
-            onKill={onKill}
-            onDelete={onDelete}
-          />
+          <CharactersContainer {...props} />
         </Route>
       </Router>
     );
@@ -55,23 +59,7 @@ describe('<CharactersContainer />', () => {
     render(
       <Router history={history}>
         <Route path="/characters/:id">
-          <CharactersContainer
-            characters={[
-              {
-                id: 1,
-                name: 'Rick Sanchez',
-                status: 'Dead',
-                species: 'Human',
-                type: '',
-                gender: 'Male',
-                image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
-              }
-            ]}
-            loading={false}
-            loadingKill={false}
-            onKill={onKill}
-            onDelete={onDelete}
-          />
+          <CharactersContainer {...props} />
         </Route>
       </Router>
     );
@@ -81,25 +69,10 @@ describe('<CharactersContainer />', () => {
   });
 
   test('If in loading state, loading animation should be desplayed', async () => {
+    props.loading = true;
     const container = render(
       <Router history={history}>
-        <CharactersContainer
-          characters={[
-            {
-              id: 1,
-              name: 'Rick Sanchez',
-              status: 'Dead',
-              species: 'Human',
-              type: '',
-              gender: 'Male',
-              image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
-            }
-          ]}
-          loading={true}
-          loadingKill={false}
-          onKill={onKill}
-          onDelete={onDelete}
-        />
+        <CharactersContainer {...props} />
       </Router>
     );
 
