@@ -39,7 +39,7 @@ describe('Delete Character E2E', () => {
     await page.waitForSelector('.swal-button--confirm');
     await page.click('.swal-button--confirm');
     await page.waitForSelector('.container');
-    const element = await page.evaluate(() =>
+    const element = await page.evaluate((characterID) =>
       document.querySelector(`#character_${characterID}`)
     );
     expect(element).toBeFalsy();

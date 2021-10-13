@@ -44,7 +44,7 @@ const AddCharacter: React.FC<Props> = (props) => {
   };
 
   return (
-    <form onSubmit={onSubmit} data-testid="form">
+    <form onSubmit={onSubmit} data-testid="form" id="addCharacterForm">
       <div className="form-group mb-2">
         <label htmlFor="name" className="ps-1 pe-1 h4">
           Name
@@ -192,7 +192,7 @@ const AddCharacter: React.FC<Props> = (props) => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary" id="submitButton">
         Add Character
       </button>
     </form>

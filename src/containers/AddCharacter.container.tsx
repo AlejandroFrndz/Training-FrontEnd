@@ -24,7 +24,6 @@ const AddCharacterContainer: React.FC<Props> = (props) => {
 
   return (
     <>
-      <h1>Add Character Container</h1>
       <AddCharacter
         handleSubmit={handleSubmit}
         name={name}

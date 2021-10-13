@@ -48,6 +48,7 @@ const Header: React.FC = () => {
         className="nav-item me-4 text-white font-weight-bold text-decoration-none p-2"
         activeClassName={styles.active}
         data-testid="toAdd"
+        id="toAdd"
       >
         <h4>Add</h4>
       </NavLink>
