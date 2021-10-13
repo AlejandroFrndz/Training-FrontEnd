@@ -5,7 +5,7 @@ import {
   AiOutlineCheckCircle
 } from 'react-icons/ai';
 
-interface Props {
+export interface Props {
   character: Character;
   onGoBack: () => void;
   onKill: (character: Character) => Promise<void>;
