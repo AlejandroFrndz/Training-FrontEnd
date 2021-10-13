@@ -35,14 +35,21 @@ const CharacterDetail: React.FC<Props> = (props) => {
         <AiOutlineExclamationCircle />
       )}
       <p>{character.status}</p>
-      <button type="button" disabled={loadingKill} onClick={handleKill}>
+      <button
+        type="button"
+        disabled={loadingKill}
+        onClick={handleKill}
+        id="killButton"
+      >
         {character.status === 'Alive' ? <>Kill</> : <>Revive</>}
       </button>
       <button type="button" onClick={handleDelete} id="deleteButton">
         Vaporize
       </button>
       <img src={character.image} alt={character.name + 'face'} />
-      <button onClick={onGoBack}>Go Back</button>
+      <button onClick={onGoBack} id="goBackButton">
+        Go Back
+      </button>
     </div>
   );
 };

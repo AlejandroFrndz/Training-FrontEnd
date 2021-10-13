@@ -31,6 +31,7 @@ const CharactersList: React.FC<Props> = (props) => {
                       name={character.name}
                       src={character.image}
                       status={character.status}
+                      id={character.id}
                     />
                   </Link>
                 </div>

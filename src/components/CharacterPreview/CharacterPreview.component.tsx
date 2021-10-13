@@ -5,10 +5,11 @@ interface Props {
   name: string;
   src: string;
   status: string;
+  id: number;
 }
 
 const CharacterPreview: React.FC<Props> = (props) => {
-  const { name, src, status } = props;
+  const { name, src, status, id } = props;
   let wordBreak = false;
   const splitName = name.split(' ');
 
@@ -47,7 +48,9 @@ const CharacterPreview: React.FC<Props> = (props) => {
       </div>
       <div className="row">
         <div className="col-12 text-center mt-2">
-          <h4 className="fst-italic">{status}</h4>
+          <h4 className="fst-italic" id={`character_${id}_status`}>
+            {status}
+          </h4>
         </div>
       </div>
     </div>
