@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { createMemoryHistory, MemoryHistory } from 'history';
 import { Router, Route } from 'react-router-dom';
 import CharactersContainer, {

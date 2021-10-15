@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import AddCharacter from '../../components/AddCharacter/AddCharacter.component';
 import userEvent from '@testing-library/user-event';
 import { NewCharacter } from '../../redux/types';

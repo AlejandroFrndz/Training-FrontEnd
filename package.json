@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --testPathIgnorePatterns=./e2e",
+    "test": "react-scripts test --testPathPattern=./__tests__",
     "test:e2e": "react-scripts test --testPathPattern=./e2e",
     "eject": "react-scripts eject",
     "backend": "json-server --watch db.json --port 5000",
