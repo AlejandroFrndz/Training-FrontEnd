@@ -1,0 +1,38 @@
+{
+  "navbar": {
+    "characters": "Characters",
+    "add": "Add"
+  },
+  "characterInfo": {
+    "name": "Name",
+    "status": {
+      "root": "Status",
+      "Alive": "Alive",
+      "Dead": "Dead"
+    },
+    "species": {
+      "root": "Species",
+      "Human": "Human",
+      "Disease": "Disease",
+      "Unknown": "Unknown"
+    },
+    "gender": {
+      "root": "Gender",
+      "Female": "Female",
+      "Male": "Male",
+      "Unknown": "Unknown"
+    },
+    "image": "Image"
+  },
+  "buttons": {
+    "goBack": "Go Back",
+    "kill": "Kill",
+    "revive": "Revive",
+    "vaporize": "Vaporize",
+    "addCharacter": "Add Character"
+  },
+  "warnings": {
+    "apiError": "Couldn't get characters from server. Please try reloading the page",
+    "emptyCharacterArray": "No characters in record. Try adding some!"
+  }
+}

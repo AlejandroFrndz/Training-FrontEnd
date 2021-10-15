@@ -1,0 +1,41 @@
+{
+  "navbar": {
+    "characters": "Personajes",
+    "add": "Añadir"
+  },
+  "characterInfo": {
+    "name": "Nombre",
+    "status": {
+      "root": "Estado",
+      "Alive": "Vivo",
+      "Alive_Female": "Viva",
+      "Dead": "Muerto",
+      "Dead_Female": "Muerta"
+    },
+    "species": {
+      "root": "Especie",
+      "Human": "Humano",
+      "Human_Female": "Humana",
+      "Disease": "Enfermedad",
+      "Unknown": "Desconocida"
+    },
+    "gender": {
+      "root": "Género",
+      "Female": "Femenino",
+      "Male": "Masculino",
+      "Unknown": "Desconocido"
+    },
+    "image": "Imágen"
+  },
+  "buttons": {
+    "goBack": "Volver",
+    "kill": "Matar",
+    "revive": "Revivir",
+    "vaporize": "Vaporizar",
+    "addCharacter": "Añadir Personaje"
+  },
+  "warnings": {
+    "apiError": "No se pudieron recuperar los personajes del servidor. Por favor, prueba a recargar la página",
+    "emptyCharacterArray": "No hay personajes registrados. ¡Prueba a añadir algunos!"
+  }
+}

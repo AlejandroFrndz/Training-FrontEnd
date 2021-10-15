@@ -1,17 +1,19 @@
 import React from 'react';
 import styles from './styles.module.css';
+import { useTranslation } from 'react-i18next';
+import { Character } from '../../redux/types';
 
 interface Props {
-  name: string;
-  src: string;
-  status: string;
-  id: number;
+  character: Character;
 }
 
 const CharacterPreview: React.FC<Props> = (props) => {
-  const { name, src, status, id } = props;
+  const {
+    character: { name, image, status, id, gender }
+  } = props;
   let wordBreak = false;
   const splitName = name.split(' ');
+  const { t } = useTranslation('common');
 
   for (const str of splitName) {
     if (str.length >= 12) {
@@ -33,7 +35,7 @@ const CharacterPreview: React.FC<Props> = (props) => {
         <div className="col-12">
           <img
             className={`${styles.flexImg} text-center`}
-            src={src}
+            src={image}
             alt={`${name}'s face`}
           />
         </div>
@@ -49,7 +51,7 @@ const CharacterPreview: React.FC<Props> = (props) => {
       <div className="row">
         <div className="col-12 text-center mt-2">
           <h4 className="fst-italic" id={`character_${id}_status`}>
-            {status}
+            {t(`characterInfo.status.${status}`, { context: gender })}
           </h4>
         </div>
       </div>

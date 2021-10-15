@@ -30,7 +30,7 @@
     {
       "id": 4,
       "name": "Beth Smith",
-      "status": "Alive",
+      "status": "Dead",
       "species": "Human",
       "type": "",
       "gender": "Female",
@@ -51,7 +51,7 @@
       "status": "Dead",
       "species": "Disease",
       "type": "",
-      "gender": "unknown",
+      "gender": "Unknown",
       "image": "https://rickandmortyapi.com/api/character/avatar/96.jpeg"
     },
     {

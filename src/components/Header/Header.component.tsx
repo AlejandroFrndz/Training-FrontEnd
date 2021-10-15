@@ -3,8 +3,10 @@ import { NavLink, Route, Switch } from 'react-router-dom';
 import styles from './styles.module.css';
 import HomeIcon from '../../assets/images/home-icon.jpg';
 import HomeIconActive from '../../assets/images/home-icon-active.png';
+import { useTranslation } from 'react-i18next';
 
 const Header: React.FC = () => {
+  const { t } = useTranslation('common');
   return (
     <nav
       className={`navbar navbar-dark ${styles.bgDark} mb-2 justify-content-between flex-row`}
@@ -40,7 +42,7 @@ const Header: React.FC = () => {
         data-testid="toCharacters"
         id="toCharacters"
       >
-        <h4>Characters</h4>
+        <h4>{t('navbar.characters')}</h4>
       </NavLink>
 
       <NavLink
@@ -50,7 +52,7 @@ const Header: React.FC = () => {
         data-testid="toAdd"
         id="toAdd"
       >
-        <h4>Add</h4>
+        <h4>{t('navbar.add')}</h4>
       </NavLink>
     </nav>
   );
