@@ -29,10 +29,13 @@
     "kill": "Kill",
     "revive": "Revive",
     "vaporize": "Vaporize",
-    "addCharacter": "Add Character"
+    "addCharacter": "Add Character",
+    "spare": "Spare"
   },
   "warnings": {
     "apiError": "Couldn't get characters from server. Please try reloading the page",
-    "emptyCharacterArray": "No characters in record. Try adding some!"
+    "emptyCharacterArray": "No characters in record. Try adding some!",
+    "vaporizeTitle": "Are you sure?",
+    "vaporizeText": "Vaporizing a character means it will cease to exist in this reality"
   }
 }

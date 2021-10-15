@@ -32,10 +32,13 @@
     "kill": "Matar",
     "revive": "Revivir",
     "vaporize": "Vaporizar",
-    "addCharacter": "Añadir Personaje"
+    "addCharacter": "Añadir Personaje",
+    "spare": "Perdonar"
   },
   "warnings": {
     "apiError": "No se pudieron recuperar los personajes del servidor. Por favor, prueba a recargar la página",
-    "emptyCharacterArray": "No hay personajes registrados. ¡Prueba a añadir algunos!"
+    "emptyCharacterArray": "No hay personajes registrados. ¡Prueba a añadir algunos!",
+    "vaporizeTitle": "¿Estás seguro?",
+    "vaporizeText": "Vaporizar un personaje significa que dejará de existir en esta realidad"
   }
 }

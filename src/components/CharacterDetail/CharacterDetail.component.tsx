@@ -5,6 +5,7 @@ import {
   AiOutlineCheckCircle
 } from 'react-icons/ai';
 import { useTranslation } from 'react-i18next';
+import swal from 'sweetalert';
 
 export interface Props {
   character: Character;
@@ -22,8 +23,32 @@ const CharacterDetail: React.FC<Props> = (props) => {
     onKill(character);
   };
 
-  const handleDelete = () => {
-    onDelete(character.id);
+  const handleDelete = async () => {
+    const confirm = await swal({
+      title: t('warnings.vaporizeTitle'),
+      text: t('warnings.vaporizeText'),
+      icon: 'warning',
+      buttons: {
+        cancel: {
+          text: t('buttons.spare'),
+          value: null,
+          visible: true,
+          className: '',
+          closeModal: true
+        },
+        confirm: {
+          text: t('buttons.vaporize') + '!!!',
+          value: true,
+          visible: true,
+          className: '',
+          closeModal: true
+        }
+      }
+    });
+
+    if (confirm) {
+      onDelete(character.id);
+    }
   };
 
   return (
