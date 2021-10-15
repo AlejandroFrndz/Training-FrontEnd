@@ -4,6 +4,8 @@ import {
   AiOutlineExclamationCircle,
   AiOutlineCheckCircle
 } from 'react-icons/ai';
+import { useTranslation } from 'react-i18next';
+import swal from 'sweetalert';
 
 export interface Props {
   character: Character;
@@ -15,40 +17,85 @@ export interface Props {
 
 const CharacterDetail: React.FC<Props> = (props) => {
   const { character, onGoBack, onKill, loadingKill, onDelete } = props;
+  const { t } = useTranslation('common');
 
   const handleKill = () => {
     onKill(character);
   };
 
-  const handleDelete = () => {
-    onDelete(character.id);
+  const handleDelete = async () => {
+    console.log(); // Needed while testing
+    const confirm = await swal({
+      title: t('warnings.vaporizeTitle'),
+      text: t('warnings.vaporizeText'),
+      icon: 'warning',
+      buttons: {
+        cancel: {
+          text: t('buttons.spare'),
+          value: null,
+          visible: true,
+          className: '',
+          closeModal: true
+        },
+        confirm: {
+          text: t('buttons.vaporize') + '!!!',
+          value: true,
+          visible: true,
+          className: '',
+          closeModal: true
+        }
+      }
+    });
+
+    if (confirm) {
+      onDelete(character.id);
+    }
   };
 
   return (
     <div className="character">
-      <h1>{character.name}</h1>
-      <h2>{character.species}</h2>
-      <h3>{character.gender}</h3>
+      <h1>
+        {t('characterInfo.name')}: {character.name}
+      </h1>
+      <h2>
+        {t('characterInfo.species.root')}:{' '}
+        {t(`characterInfo.species.${character.species}`, {
+          context: character.gender
+        })}
+      </h2>
+      <h3>
+        {t('characterInfo.gender.root')}:{' '}
+        {t(`characterInfo.gender.${character.gender}`)}
+      </h3>
       {character.status === 'Alive' ? (
         <AiOutlineCheckCircle />
       ) : (
         <AiOutlineExclamationCircle />
       )}
-      <p>{character.status}</p>
+      <p>
+        {t('characterInfo.status.root')}:{' '}
+        {t(`characterInfo.status.${character.status}`, {
+          context: character.gender
+        })}
+      </p>
       <button
         type="button"
         disabled={loadingKill}
         onClick={handleKill}
         id="killButton"
       >
-        {character.status === 'Alive' ? <>Kill</> : <>Revive</>}
+        {character.status === 'Alive' ? (
+          <>{t('buttons.kill')}</>
+        ) : (
+          <>{t('buttons.revive')}</>
+        )}
       </button>
       <button type="button" onClick={handleDelete} id="deleteButton">
-        Vaporize
+        {t('buttons.vaporize')}
       </button>
       <img src={character.image} alt={character.name + 'face'} />
       <button onClick={onGoBack} id="goBackButton">
-        Go Back
+        {t('buttons.goBack')}
       </button>
     </div>
   );

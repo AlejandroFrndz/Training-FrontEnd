@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Character } from '../../redux/types';
 import CharacterPreview from '../CharacterPreview/CharacterPreview.component';
 import styles from './style.module.css';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   characters: Character[];
@@ -11,6 +12,8 @@ interface Props {
 
 const CharactersList: React.FC<Props> = (props) => {
   const { characters } = props;
+
+  const { t } = useTranslation('common');
 
   return (
     <div className="container">
@@ -27,17 +30,12 @@ const CharactersList: React.FC<Props> = (props) => {
                     to={`/characters/${character.id}`}
                     className={`text-decoration-none text-reset`}
                   >
-                    <CharacterPreview
-                      name={character.name}
-                      src={character.image}
-                      status={character.status}
-                      id={character.id}
-                    />
+                    <CharacterPreview character={character} />
                   </Link>
                 </div>
               );
             })
-          : 'No characters in record'}
+          : t('warnings.emptyCharacterArray')}
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ describe('Update Character E2E', () => {
   const characterID = 20;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({ args: ['--lang=en'] });
     page = await browser.newPage();
   });
 

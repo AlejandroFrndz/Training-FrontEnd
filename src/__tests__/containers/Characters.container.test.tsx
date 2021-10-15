@@ -6,6 +6,8 @@ import CharactersContainer, {
   Props
 } from '../../containers/Characters.container';
 import { Character } from '../../redux/types';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
 
 describe('<CharactersContainer />', () => {
   let history: MemoryHistory;
@@ -42,11 +44,13 @@ describe('<CharactersContainer />', () => {
     history.push('/characters/1');
 
     render(
-      <Router history={history}>
-        <Route path="/characters/:id">
-          <CharactersContainer {...props} />
-        </Route>
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <Route path="/characters/:id">
+            <CharactersContainer {...props} />
+          </Route>
+        </Router>
+      </I18nextProvider>
     );
 
     expect(screen.getByText('Vaporize')).toBeInTheDocument();
@@ -56,11 +60,13 @@ describe('<CharactersContainer />', () => {
     history.push('/characters/2');
 
     render(
-      <Router history={history}>
-        <Route path="/characters/:id">
-          <CharactersContainer {...props} />
-        </Route>
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <Route path="/characters/:id">
+            <CharactersContainer {...props} />
+          </Route>
+        </Router>
+      </I18nextProvider>
     );
 
     expect(screen.queryByText('Vaporize')).not.toBeInTheDocument();
@@ -70,9 +76,11 @@ describe('<CharactersContainer />', () => {
   test('If in loading state, loading animation should be desplayed', async () => {
     props.loading = true;
     const container = render(
-      <Router history={history}>
-        <CharactersContainer {...props} />
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <CharactersContainer {...props} />
+        </Router>
+      </I18nextProvider>
     );
 
     expect(

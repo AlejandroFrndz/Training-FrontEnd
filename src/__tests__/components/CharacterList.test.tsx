@@ -3,7 +3,8 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
-
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
 import CharacterList from '../../components/CharactersList/CharactersList.component';
 
 describe('<CharacterList />', () => {
@@ -32,16 +33,22 @@ describe('<CharacterList />', () => {
   const history = createMemoryHistory();
 
   test('If the characters array is empty, it should display appropiate message', () => {
-    render(<CharacterList characters={[]} onGoBack={onGoBack} />);
+    render(
+      <I18nextProvider i18n={i18n}>
+        <CharacterList characters={[]} onGoBack={onGoBack} />
+      </I18nextProvider>
+    );
     const div = screen.getByTestId('innerDiv');
     expect(div).toHaveTextContent('No characters in record');
   });
 
   test('Characters are properly displayed', () => {
     render(
-      <Router history={history}>
-        <CharacterList characters={characters} onGoBack={onGoBack} />
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <CharacterList characters={characters} onGoBack={onGoBack} />
+        </Router>
+      </I18nextProvider>
     );
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
     expect(screen.getByText('Morty Smith')).toBeInTheDocument();
@@ -53,9 +60,11 @@ describe('<CharacterList />', () => {
 
   test('Navigation to character detail works', () => {
     render(
-      <Router history={history}>
-        <CharacterList characters={characters} onGoBack={onGoBack} />
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <CharacterList characters={characters} onGoBack={onGoBack} />
+        </Router>
+      </I18nextProvider>
     );
 
     userEvent.click(screen.getByText('Rick Sanchez'));

@@ -14,9 +14,12 @@ import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
 import AddCharacterContainer from './containers/AddCharacter.container';
 import { Character, NewCharacter } from './redux/types';
+import { useTranslation } from 'react-i18next';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
+
+  const { t } = useTranslation('common');
 
   const characters = useSelector((state: State) => state.characters.characters);
   const loadingGet = useSelector((state: State) => state.characters.loadingGet);
@@ -65,10 +68,7 @@ const App: React.FC = () => {
 
         <Route exact path="/characters">
           {errorGet ? (
-            <h1>
-              Couldn&apos;t get characters from server. Please try reloading the
-              page
-            </h1>
+            <h1>{t('warnings.apiError')}</h1>
           ) : (
             <CharactersContainer
               characters={characters}

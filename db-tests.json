@@ -64,22 +64,13 @@
       "id": 1250
     },
     {
-      "name": "Bill",
-      "status": "Alive",
-      "species": "Human",
-      "gender": "Male",
-      "image": "https://rickandmortyapi.com/api/character/avatar/45.jpeg",
-      "type": "",
-      "id": 1253
-    },
-    {
       "name": "Rick Sanchez",
       "status": "Dead",
       "species": "Human",
       "type": "",
       "gender": "Male",
       "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
-      "id": 1254
+      "id": 1251
     }
   ]
 }

@@ -4,7 +4,6 @@ import CharacterDetail from '../components/CharacterDetail/CharacterDetail.compo
 import { useParams, useHistory } from 'react-router-dom';
 import CharactersList from '../components/CharactersList/CharactersList.component';
 import Loader from 'react-loader-spinner';
-import swal from 'sweetalert';
 
 export interface Props {
   characters: Character[];
@@ -41,32 +40,8 @@ const CharactersContainer: React.FC<Props> = (props) => {
     }
 
     const handleDelete = async (id: number) => {
-      const confirm = await swal({
-        title: 'Are you sure?',
-        text: 'Vaporizing a character means it will cease to exist in this reality',
-        icon: 'warning',
-        buttons: {
-          cancel: {
-            text: 'Spare',
-            value: null,
-            visible: true,
-            className: '',
-            closeModal: true
-          },
-          confirm: {
-            text: 'Vaporize!!!',
-            value: true,
-            visible: true,
-            className: '',
-            closeModal: true
-          }
-        }
-      });
-
-      if (confirm) {
-        await onDelete(id);
-        history.push('./characters');
-      }
+      await onDelete(id);
+      history.push('./characters');
     };
 
     if (typeof character !== 'undefined') {

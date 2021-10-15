@@ -1,5 +1,6 @@
 import React from 'react';
 import { NewCharacter } from '../../redux/types';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   handleSubmit: (character: NewCharacter) => void;
@@ -30,6 +31,8 @@ const AddCharacter: React.FC<Props> = (props) => {
     handleSubmit
   } = props;
 
+  const { t } = useTranslation('common');
+
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -47,11 +50,11 @@ const AddCharacter: React.FC<Props> = (props) => {
     <form onSubmit={onSubmit} data-testid="form" id="addCharacterForm">
       <div className="form-group mb-2">
         <label htmlFor="name" className="ps-1 pe-1 h4">
-          Name
+          {t('characterInfo.name')}
         </label>
         <input
           type="text"
-          placeholder="Name"
+          placeholder={t('characterInfo.name')}
           id="name"
           name="name"
           className="form-control"
@@ -63,14 +66,14 @@ const AddCharacter: React.FC<Props> = (props) => {
       </div>
 
       <div className="form-group mb-2">
-        <h4>Status</h4>
+        <h4>{t('characterInfo.status.root')}</h4>
 
         <div className="form-check form-check-inline">
           <label
             htmlFor="Alive"
             className="form-check-label bg-light ps-1 pe-1"
           >
-            Alive
+            {t('characterInfo.status.Alive')}
           </label>
           <input
             type="radio"
@@ -86,7 +89,7 @@ const AddCharacter: React.FC<Props> = (props) => {
 
         <div className="form-check form-check-inline">
           <label htmlFor="Dead" className="form-check-label bg-light ps-1 pe-1">
-            Dead
+            {t('characterInfo.status.Dead')}
           </label>
           <input
             type="radio"
@@ -103,13 +106,13 @@ const AddCharacter: React.FC<Props> = (props) => {
 
       <div className="form-group mb-2">
         <label htmlFor="species" className="h4 ps-1 pe-1 mb-2">
-          Species
+          {t('characterInfo.species.root')}
         </label>
         <input
           type="text"
           id="species"
           name="species"
-          placeholder="Species"
+          placeholder={t('characterInfo.species.root')}
           className="form-control"
           value={species}
           onChange={(target) => setSpecies(target.currentTarget.value)}
@@ -118,14 +121,14 @@ const AddCharacter: React.FC<Props> = (props) => {
       </div>
 
       <div className="form-group mb-2">
-        <h4>Gender</h4>
+        <h4>{t('characterInfo.gender.root')}</h4>
 
         <div className="form-check form-check-inline">
           <label
             htmlFor="female"
             className="form-check-label bg-light ps-1 pe-1"
           >
-            Female
+            {t('characterInfo.gender.Female')}
           </label>
           <input
             type="radio"
@@ -141,7 +144,7 @@ const AddCharacter: React.FC<Props> = (props) => {
 
         <div className="form-check form-check-inline">
           <label htmlFor="male" className="form-check-label bg-light ps-1 pe-1">
-            Male
+            {t('characterInfo.gender.Male')}
           </label>
           <input
             type="radio"
@@ -160,7 +163,7 @@ const AddCharacter: React.FC<Props> = (props) => {
             htmlFor="unknown"
             className="form-check-label bg-light ps-1 pe-1"
           >
-            Unknown
+            {t('characterInfo.gender.Unknown')}
           </label>
           <input
             type="radio"
@@ -177,11 +180,11 @@ const AddCharacter: React.FC<Props> = (props) => {
 
       <div className="form-group mb-2">
         <label htmlFor="image" className="h4 ps-1 pe-1 mb-2">
-          Image
+          {t('characterInfo.image')}
         </label>
         <input
           type="text"
-          placeholder="Image URL"
+          placeholder={t('characterInfo.image')}
           id="image"
           name="image"
           className="form-control"
@@ -193,7 +196,7 @@ const AddCharacter: React.FC<Props> = (props) => {
       </div>
 
       <button type="submit" className="btn btn-primary" id="submitButton">
-        Add Character
+        {t('buttons.addCharacter')}
       </button>
     </form>
   );

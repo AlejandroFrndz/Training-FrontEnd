@@ -8,7 +8,9 @@ describe('Add Character E2E', () => {
   const characterID = 1252;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      args: ['--lang=en']
+    });
     page = await browser.newPage();
   });
 
@@ -18,7 +20,8 @@ describe('Add Character E2E', () => {
     await page.click('#toAdd');
     await page.waitForSelector('#addCharacterForm');
     const classes = await page.$eval('#toAdd', (e) => e.classList);
-    expect(classes[6]).toBe('styles_active__15guF');
+    console.log(classes);
+    expect(classes[5]).toBe('styles_active__15guF');
   });
 
   it('Fills and submits the form and gets back to characters page', async () => {

@@ -18,3 +18,8 @@ a.active {
 .bgDark {
   background-color: #000;
 }
+
+.flags {
+  width: 20px;
+  cursor: pointer;
+}

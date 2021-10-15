@@ -4,6 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { NewCharacter } from '../../redux/types';
 import { Router } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
 
 import AddCharacterContainer from '../../containers/AddCharacter.container';
 
@@ -16,9 +18,11 @@ describe('<AddCharacterContainer />', () => {
 
   beforeEach(() => {
     render(
-      <Router history={history}>
-        <AddCharacterContainer onAddCharacter={onAddCharacter} />
-      </Router>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <AddCharacterContainer onAddCharacter={onAddCharacter} />
+        </Router>
+      </I18nextProvider>
     );
   });
 
