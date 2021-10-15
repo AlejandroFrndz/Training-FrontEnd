@@ -3,6 +3,8 @@ import { render } from '@testing-library/react';
 import AddCharacter from '../../components/AddCharacter/AddCharacter.component';
 import userEvent from '@testing-library/user-event';
 import { NewCharacter } from '../../redux/types';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
 
 describe('<AddCharacter />', () => {
   const props = {
@@ -25,19 +27,21 @@ describe('<AddCharacter />', () => {
 
   beforeAll(() => {
     const { getByRole } = render(
-      <AddCharacter
-        handleSubmit={props.handleSubmit}
-        name={props.name}
-        setName={props.setName}
-        status={props.status}
-        setStatus={props.setStatus}
-        species={props.species}
-        setSpecies={props.setSpecies}
-        gender={props.gender}
-        setGender={props.setGender}
-        image={props.image}
-        setImage={props.setImage}
-      />
+      <I18nextProvider i18n={i18n}>
+        <AddCharacter
+          handleSubmit={props.handleSubmit}
+          name={props.name}
+          setName={props.setName}
+          status={props.status}
+          setStatus={props.setStatus}
+          species={props.species}
+          setSpecies={props.setSpecies}
+          gender={props.gender}
+          setGender={props.setGender}
+          image={props.image}
+          setImage={props.setImage}
+        />
+      </I18nextProvider>
     );
 
     submitButton = getByRole('button');

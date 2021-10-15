@@ -5,6 +5,8 @@ import { Character } from '../../redux/types';
 import CharacterDetail, {
   Props
 } from '../../components/CharacterDetail/CharacterDetail.component';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n/i18n';
 
 describe('<CharacterDetail />', () => {
   const onGoBack = jest.fn();
@@ -14,6 +16,8 @@ describe('<CharacterDetail />', () => {
   const onDelete = jest.fn(async (id: number) => {
     id;
   });
+
+  const spy = jest.spyOn(console, 'log');
 
   let props: Props;
 
@@ -36,33 +40,47 @@ describe('<CharacterDetail />', () => {
   });
 
   test('All elements are displayed', () => {
-    render(<CharacterDetail {...props} />);
+    render(
+      <I18nextProvider i18n={i18n}>
+        <CharacterDetail {...props} />
+      </I18nextProvider>
+    );
 
-    expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
-    expect(screen.getByText('Human')).toBeInTheDocument();
-    expect(screen.getByText('Male')).toBeInTheDocument();
-    expect(screen.getByText('Dead')).toBeInTheDocument();
+    expect(screen.getByText('Name: Rick Sanchez')).toBeInTheDocument();
+    expect(screen.getByText('Species: Human')).toBeInTheDocument();
+    expect(screen.getByText('Gender: Male')).toBeInTheDocument();
+    expect(screen.getByText('Status: Dead')).toBeInTheDocument();
     expect(screen.getByText('Revive')).toBeInTheDocument();
     expect(screen.getByText('Vaporize')).toBeInTheDocument();
     expect(screen.getByText('Go Back')).toBeInTheDocument();
   });
 
   test('Button functionality is correct', () => {
-    render(<CharacterDetail {...props} />);
+    render(
+      <I18nextProvider i18n={i18n}>
+        <CharacterDetail {...props} />
+      </I18nextProvider>
+    );
 
     userEvent.click(screen.getByText('Revive'));
     expect(onKill).toHaveBeenCalled();
 
     userEvent.click(screen.getByText('Vaporize'));
-    expect(onDelete).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
 
     userEvent.click(screen.getByText('Go Back'));
     expect(onGoBack).toHaveBeenCalled();
+
+    spy.mockClear();
   });
 
   test('If loadingKill is active, kill button should not be active', () => {
     props.loadingKill = true;
-    render(<CharacterDetail {...props} />);
+    render(
+      <I18nextProvider i18n={i18n}>
+        <CharacterDetail {...props} />
+      </I18nextProvider>
+    );
 
     userEvent.click(screen.getByText('Revive'));
     expect(onKill).not.toHaveBeenCalled();

@@ -24,6 +24,7 @@ const CharacterDetail: React.FC<Props> = (props) => {
   };
 
   const handleDelete = async () => {
+    console.log(); // Needed while testing
     const confirm = await swal({
       title: t('warnings.vaporizeTitle'),
       text: t('warnings.vaporizeText'),

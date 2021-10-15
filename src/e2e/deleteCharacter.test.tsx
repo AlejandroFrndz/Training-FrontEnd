@@ -8,7 +8,7 @@ describe('Delete Character E2E', () => {
   const characterID = 1251;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({ args: ['--lang=en'] });
     page = await browser.newPage();
   });
 
@@ -29,7 +29,7 @@ describe('Delete Character E2E', () => {
       '.character',
       (e) => e.firstChild?.textContent
     );
-    expect(charName).toBe('Rick Sanchez');
+    expect(charName).toBe('Name: Rick Sanchez');
   });
 
   it('Deletes the character and goes back to characters list', async () => {
