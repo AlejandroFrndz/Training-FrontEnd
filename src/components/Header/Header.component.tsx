@@ -14,7 +14,7 @@ const Header: React.FC = () => {
       <NavLink
         exact
         to={'/'}
-        className={`${styles.homeContainer} nav-brand ms-4 text-white font-weight-bold text-decoration-none`}
+        className={`${styles.Home} nav-brand ms-4 text-white font-weight-bold text-decoration-none`}
         data-testid="toHome"
       >
         <Switch>

@@ -1,14 +1,15 @@
 import puppeteer from 'puppeteer';
-import CharacterService from '../services/characters.service';
 
 describe('Delete Character E2E', () => {
   jest.setTimeout(8000);
   let browser: puppeteer.Browser;
   let page: puppeteer.Page;
-  const characterID = 1251;
+  const characterID = 30;
 
   beforeAll(async () => {
-    browser = await puppeteer.launch({ args: ['--lang=en'] });
+    browser = await puppeteer.launch({
+      args: ['--lang=en']
+    });
     page = await browser.newPage();
   });
 
@@ -29,7 +30,7 @@ describe('Delete Character E2E', () => {
       '.character',
       (e) => e.firstChild?.textContent
     );
-    expect(charName).toBe('Name: Rick Sanchez');
+    expect(charName).toBe('Name: Summer Smith');
   });
 
   it('Deletes the character and goes back to characters list', async () => {
@@ -46,15 +47,6 @@ describe('Delete Character E2E', () => {
   });
 
   afterAll(async () => {
-    await CharacterService.create({
-      name: 'Rick Sanchez',
-      status: 'Dead',
-      species: 'Human',
-      type: '',
-      gender: 'Male',
-      image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
-    });
-
     browser.close();
   });
 });

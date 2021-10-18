@@ -4,7 +4,8 @@ import {
   updateCharacter,
   createCharacter,
   deleteCharacter,
-  ActionTypes
+  ActionTypes,
+  getImmortalCharacter
 } from '../../redux/actions/charactersActions';
 import { Character, NewCharacter } from '../../redux/types';
 
@@ -130,6 +131,25 @@ describe('Character Actions', () => {
 
       expect(dispatch).toHaveBeenCalledWith({
         type: ActionTypes.DELETE_CHARACTER,
+        payload: id
+      });
+    });
+  });
+
+  describe('Set immortal character', () => {
+    const id = 96;
+
+    it('Updates immortal character id', async () => {
+      mockHttp.get.mockResolvedValueOnce({
+        data: {
+          id: id
+        }
+      });
+
+      await getImmortalCharacter()(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: ActionTypes.GET_IMMORTAL_CHARACTER,
         payload: id
       });
     });

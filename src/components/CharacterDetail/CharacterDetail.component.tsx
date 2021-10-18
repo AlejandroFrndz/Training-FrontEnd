@@ -13,10 +13,12 @@ export interface Props {
   onKill: (character: Character) => Promise<void>;
   loadingKill: boolean;
   onDelete: (id: number) => Promise<void>;
+  allowVaporize: boolean;
 }
 
 const CharacterDetail: React.FC<Props> = (props) => {
-  const { character, onGoBack, onKill, loadingKill, onDelete } = props;
+  const { character, onGoBack, onKill, loadingKill, onDelete, allowVaporize } =
+    props;
   const { t } = useTranslation('common');
 
   const handleKill = () => {
@@ -90,7 +92,12 @@ const CharacterDetail: React.FC<Props> = (props) => {
           <>{t('buttons.revive')}</>
         )}
       </button>
-      <button type="button" onClick={handleDelete} id="deleteButton">
+      <button
+        type="button"
+        onClick={handleDelete}
+        id="deleteButton"
+        disabled={!allowVaporize}
+      >
         {t('buttons.vaporize')}
       </button>
       <img src={character.image} alt={character.name + 'face'} />

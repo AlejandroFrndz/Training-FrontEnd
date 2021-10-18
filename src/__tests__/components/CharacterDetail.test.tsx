@@ -35,7 +35,8 @@ describe('<CharacterDetail />', () => {
       onGoBack: onGoBack,
       onKill: onKill,
       onDelete: onDelete,
-      loadingKill: false
+      loadingKill: false,
+      allowVaporize: true
     };
   });
 
@@ -84,5 +85,18 @@ describe('<CharacterDetail />', () => {
 
     userEvent.click(screen.getByText('Revive'));
     expect(onKill).not.toHaveBeenCalled();
+  });
+
+  test('If allowVaporize is false, vaporize button should not be active', () => {
+    props.allowVaporize = false;
+
+    render(
+      <I18nextProvider i18n={i18n}>
+        <CharacterDetail {...props} />
+      </I18nextProvider>
+    );
+
+    userEvent.click(screen.getByText('Vaporize'));
+    expect(onDelete).not.toHaveBeenCalled();
   });
 });

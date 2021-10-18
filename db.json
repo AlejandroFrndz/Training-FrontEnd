@@ -72,5 +72,8 @@
       "type": "",
       "id": 125
     }
-  ]
+  ],
+  "immortalCharacter": {
+    "id": 1
+  }
 }

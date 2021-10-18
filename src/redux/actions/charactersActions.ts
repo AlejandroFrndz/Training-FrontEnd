@@ -10,7 +10,8 @@ export enum ActionTypes {
   UPDATE_CHARACTERS_PENDING = 'updateCharactersPending',
   UPDATE_CHARACTERS_ERROR = 'updateCharactersError',
   CREATE_CHARACTER = 'createCharacter',
-  DELETE_CHARACTER = 'deleteCharacter'
+  DELETE_CHARACTER = 'deleteCharacter',
+  GET_IMMORTAL_CHARACTER = 'getImmortalCharacter'
 }
 
 interface GetCharactersAction {
@@ -49,6 +50,11 @@ interface DeleteCharacterAction {
   payload: number;
 }
 
+interface GetImmortalCharacter {
+  type: ActionTypes.GET_IMMORTAL_CHARACTER;
+  payload: number;
+}
+
 export type Action =
   | GetCharactersAction
   | GetCharactersPendingAction
@@ -57,7 +63,8 @@ export type Action =
   | UpdateCharacterPendingAction
   | UpdateCharacterErrorAction
   | CreateCharacterAction
-  | DeleteCharacterAction;
+  | DeleteCharacterAction
+  | GetImmortalCharacter;
 
 // eslint-disable-next-line
 export const getCharacters = () => {
@@ -124,6 +131,17 @@ export const deleteCharacter = (id: number) => {
     dispatch({
       type: ActionTypes.DELETE_CHARACTER,
       payload: id
+    });
+  };
+};
+
+export const getImmortalCharacter = () => {
+  // eslint-disable-next-line
+  return async (dispatch: Dispatch<Action>) => {
+    const res = await CharactersService.getImmortalCharacter();
+    dispatch({
+      type: ActionTypes.GET_IMMORTAL_CHARACTER,
+      payload: res.data.id
     });
   };
 };

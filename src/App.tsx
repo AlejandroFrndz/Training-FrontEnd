@@ -8,13 +8,16 @@ import {
   getCharacters,
   updateCharacter,
   createCharacter,
-  deleteCharacter
+  deleteCharacter,
+  getImmortalCharacter
 } from './redux/actions/charactersActions';
 import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
 import AddCharacterContainer from './containers/AddCharacter.container';
 import { Character, NewCharacter } from './redux/types';
 import { useTranslation } from 'react-i18next';
+import Home from './components/Home/Home.component';
+import Loader from 'react-loader-spinner';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -24,6 +27,9 @@ const App: React.FC = () => {
   const characters = useSelector((state: State) => state.characters.characters);
   const loadingGet = useSelector((state: State) => state.characters.loadingGet);
   const errorGet = useSelector((state: State) => state.characters.errorGet);
+  const immortalCharacter = useSelector(
+    (state: State) => state.characters.immortalCharacter
+  );
 
   const loadingUpdate = useSelector(
     (state: State) => state.characters.loadingUpdate
@@ -37,6 +43,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     dispatch(getCharacters());
+    dispatch(getImmortalCharacter());
   }, []);
 
   const onKillCharacter = async (character: Character) => {
@@ -57,13 +64,24 @@ const App: React.FC = () => {
     dispatch(deleteCharacter(id));
   };
 
+  if (loadingGet) {
+    return (
+      <Router>
+        <Header />
+        <Loader type="TailSpin" />;
+      </Router>
+    );
+  }
+
   return (
     <Router>
       <Header />
 
       <Switch>
         <Route exact path="/">
-          <h1 id="HomeText">HOME</h1>
+          <Home
+            character={characters.filter((e) => e.id === immortalCharacter)[0]}
+          />
         </Route>
 
         <Route exact path="/characters">
@@ -72,7 +90,6 @@ const App: React.FC = () => {
           ) : (
             <CharactersContainer
               characters={characters}
-              loading={loadingGet}
               loadingKill={loadingUpdate}
               onKill={onKillCharacter}
               onDelete={onDeleteCharacter}
@@ -89,7 +106,6 @@ const App: React.FC = () => {
           ) : (
             <CharactersContainer
               characters={characters}
-              loading={loadingGet}
               loadingKill={loadingUpdate}
               onKill={onKillCharacter}
               onDelete={onDeleteCharacter}

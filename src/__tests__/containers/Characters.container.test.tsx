@@ -8,6 +8,8 @@ import CharactersContainer, {
 import { Character } from '../../redux/types';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n/i18n';
+import { Provider } from 'react-redux';
+import { store } from '../../redux/store';
 
 describe('<CharactersContainer />', () => {
   let history: MemoryHistory;
@@ -33,7 +35,6 @@ describe('<CharactersContainer />', () => {
           image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg'
         }
       ],
-      loading: false,
       loadingKill: false,
       onKill: onKill,
       onDelete: onDelete
@@ -44,13 +45,15 @@ describe('<CharactersContainer />', () => {
     history.push('/characters/1');
 
     render(
-      <I18nextProvider i18n={i18n}>
-        <Router history={history}>
-          <Route path="/characters/:id">
-            <CharactersContainer {...props} />
-          </Route>
-        </Router>
-      </I18nextProvider>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <Router history={history}>
+            <Route path="/characters/:id">
+              <CharactersContainer {...props} />
+            </Route>
+          </Router>
+        </I18nextProvider>
+      </Provider>
     );
 
     expect(screen.getByText('Vaporize')).toBeInTheDocument();
@@ -60,34 +63,18 @@ describe('<CharactersContainer />', () => {
     history.push('/characters/2');
 
     render(
-      <I18nextProvider i18n={i18n}>
-        <Router history={history}>
-          <Route path="/characters/:id">
-            <CharactersContainer {...props} />
-          </Route>
-        </Router>
-      </I18nextProvider>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <Router history={history}>
+            <Route path="/characters/:id">
+              <CharactersContainer {...props} />
+            </Route>
+          </Router>
+        </I18nextProvider>
+      </Provider>
     );
 
     expect(screen.queryByText('Vaporize')).not.toBeInTheDocument();
     expect(history.location.pathname).toBe('/characters');
-  });
-
-  test('If in loading state, loading animation should be desplayed', async () => {
-    props.loading = true;
-    const container = render(
-      <I18nextProvider i18n={i18n}>
-        <Router history={history}>
-          <CharactersContainer {...props} />
-        </Router>
-      </I18nextProvider>
-    );
-
-    expect(
-      container.container.children
-        .item(0)
-        ?.children.item(0)
-        ?.children.item(0) instanceof SVGElement
-    ).toBeTruthy();
   });
 });

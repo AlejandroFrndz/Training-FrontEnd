@@ -3,11 +3,11 @@ import { Character } from '../redux/types';
 import CharacterDetail from '../components/CharacterDetail/CharacterDetail.component';
 import { useParams, useHistory } from 'react-router-dom';
 import CharactersList from '../components/CharactersList/CharactersList.component';
-import Loader from 'react-loader-spinner';
+import { State } from '../redux/reducers/rootReducer';
+import { useSelector } from 'react-redux';
 
 export interface Props {
   characters: Character[];
-  loading: boolean;
   loadingKill: boolean;
   onKill: (character: Character) => Promise<void>;
   onDelete: (id: number) => Promise<void>;
@@ -18,13 +18,12 @@ interface Params {
 }
 
 const CharactersContainer: React.FC<Props> = (props) => {
-  const { characters, loading, loadingKill, onKill, onDelete } = props;
+  const { characters, loadingKill, onKill, onDelete } = props;
   const { id } = useParams<Params>();
   const history = useHistory();
-
-  if (loading) {
-    return <Loader type="TailSpin" />;
-  }
+  const immortalId = useSelector(
+    (state: State) => state.characters.immortalCharacter
+  );
 
   const onGoBack = () => {
     history.goBack();
@@ -52,6 +51,7 @@ const CharactersContainer: React.FC<Props> = (props) => {
           onKill={onKill}
           loadingKill={loadingKill}
           onDelete={handleDelete}
+          allowVaporize={!(Number(id) === immortalId)}
         />
       );
     } else {

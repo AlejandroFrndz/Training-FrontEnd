@@ -27,7 +27,8 @@ describe('Characters Reducer', () => {
     loadingGet: false,
     errorGet: false,
     loadingUpdate: false,
-    errorUpdate: false
+    errorUpdate: false,
+    immortalCharacter: 0
   };
 
   describe('Get Characters', () => {
@@ -175,6 +176,20 @@ describe('Characters Reducer', () => {
     expect(newState).toMatchObject({
       ...prevState,
       characters: [prevState.characters[1]]
+    });
+  });
+
+  test('Set immortal character', () => {
+    const immortalId = 96;
+
+    const newState = characterReducer(prevState, {
+      type: ActionTypes.GET_IMMORTAL_CHARACTER,
+      payload: immortalId
+    });
+
+    expect(newState).toMatchObject({
+      ...prevState,
+      immortalCharacter: immortalId
     });
   });
 });

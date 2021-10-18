@@ -3,10 +3,11 @@ import { State } from '../types';
 
 const initialState: State = {
   characters: [],
-  loadingGet: false,
+  loadingGet: true,
   errorGet: false,
   loadingUpdate: false,
-  errorUpdate: false
+  errorUpdate: false,
+  immortalCharacter: 0
 };
 
 // eslint-disable-next-line
@@ -66,6 +67,12 @@ const reducer = (state: State = initialState, action: Action) => {
       return {
         ...state,
         characters: state.characters.filter((ele) => ele.id !== action.payload)
+      };
+
+    case ActionTypes.GET_IMMORTAL_CHARACTER:
+      return {
+        ...state,
+        immortalCharacter: action.payload
       };
     default:
       return state;

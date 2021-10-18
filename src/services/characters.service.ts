@@ -1,5 +1,5 @@
 import http from '../http-common';
-import { Character, NewCharacter } from '../redux/types';
+import { Character, NewCharacter, ImmortalCharacter } from '../redux/types';
 
 class CharactersService {
   private resource: string;
@@ -34,6 +34,10 @@ class CharactersService {
 
   findByName(name: string) {
     return http.get<Character[]>(`${this.resource}?name_like=${name}`);
+  }
+
+  getImmortalCharacter() {
+    return http.get<ImmortalCharacter>('/immortalCharacter');
   }
 }
 

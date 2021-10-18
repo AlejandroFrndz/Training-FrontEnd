@@ -23,4 +23,9 @@ export interface State {
   errorGet: boolean;
   loadingUpdate: boolean;
   errorUpdate: boolean;
+  immortalCharacter: number;
+}
+
+export interface ImmortalCharacter {
+  id: number;
 }

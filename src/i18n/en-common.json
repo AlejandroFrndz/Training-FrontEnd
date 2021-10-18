@@ -36,6 +36,9 @@
     "apiError": "Couldn't get characters from server. Please try reloading the page",
     "emptyCharacterArray": "No characters in record. Try adding some!",
     "vaporizeTitle": "Are you sure?",
-    "vaporizeText": "Vaporizing a character means it will cease to exist in this reality"
+    "vaporizeText": "Vaporizing a character means it will cease to exist in this reality",
+    "immortalCharacterText": "Today's immortal character is",
+    "immortalCharacterSubtext": "Remember, the immortal character cannot be vaporized",
+    "noImmortal": "No one is immortal today"
   }
 }

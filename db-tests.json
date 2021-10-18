@@ -72,5 +72,8 @@
       "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
       "id": 1251
     }
-  ]
+  ],
+  "immortalCharacter": {
+    "id": 40
+  }
 }
