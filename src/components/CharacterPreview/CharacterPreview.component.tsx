@@ -34,7 +34,7 @@ const CharacterPreview: React.FC<Props> = (props) => {
       <div className="row">
         <div className="col-12">
           <img
-            className={`${styles.flexImg} text-center`}
+            className={`${styles.flexImg} text-center rounded`}
             src={image}
             alt={`${name}'s face`}
           />

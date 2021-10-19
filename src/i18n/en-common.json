@@ -39,6 +39,9 @@
     "vaporizeText": "Vaporizing a character means it will cease to exist in this reality",
     "immortalCharacterText": "Today's immortal character is",
     "immortalCharacterSubtext": "Remember, the immortal character cannot be vaporized",
-    "noImmortal": "No one is immortal today"
+    "noImmortal": "No one is immortal today",
+    "immortalButtonTitle": "This is the immortal character. You cannot vaporize him",
+    "immortalButtonTitle_Female": "This is the immortal character. You cannot vaporize her",
+    "immortalButtonTitle_Unknown": "This is the immortal character. You cannot vaporize it"
   }
 }

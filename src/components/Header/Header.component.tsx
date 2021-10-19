@@ -9,7 +9,7 @@ const Header: React.FC = () => {
   const { t, i18n } = useTranslation('common');
   return (
     <nav
-      className={`navbar navbar-dark ${styles.bgDark} mb-2 justify-content-between flex-row`}
+      className={`navbar navbar-dark ${styles.bgDark} mb-2 justify-content-between flex-row sticky-top`}
     >
       <NavLink
         exact

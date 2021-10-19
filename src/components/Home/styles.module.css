@@ -1,0 +1,16 @@
+.charWrapper {
+  border: 1px solid rgb(145, 106, 1);
+  border-radius: 20px;
+  background-image: url(../../assets/images/black-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.logo {
+  max-width: 870px;
+}
+
+.mtN2 {
+  margin-top: -0.5rem !important;
+}

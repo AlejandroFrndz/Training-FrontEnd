@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Rick Sanchez",
-      "status": "Dead",
+      "status": "Alive",
       "species": "Human",
       "type": "",
       "gender": "Male",
@@ -12,7 +12,7 @@
     {
       "id": 2,
       "name": "Morty Smith",
-      "status": "Alive",
+      "status": "Dead",
       "species": "Human",
       "type": "",
       "gender": "Male",
@@ -30,7 +30,7 @@
     {
       "id": 4,
       "name": "Beth Smith",
-      "status": "Dead",
+      "status": "Alive",
       "species": "Human",
       "type": "",
       "gender": "Female",
