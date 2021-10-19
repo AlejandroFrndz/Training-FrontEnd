@@ -99,10 +99,7 @@ const App: React.FC = () => {
 
         <Route path="/characters/:id">
           {errorGet ? (
-            <h1>
-              Couldn&apos;t get characters from server. Please try reloading the
-              page
-            </h1>
+            <h1>{t('warnings.apiError')}</h1>
           ) : (
             <CharactersContainer
               characters={characters}
