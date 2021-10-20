@@ -18,6 +18,7 @@ import { Character, NewCharacter } from './redux/types';
 import { useTranslation } from 'react-i18next';
 import Home from './components/Home/Home.component';
 import Loader from 'react-loader-spinner';
+import EpisodesListContainer from './containers/EpisodesList.container';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -112,6 +113,10 @@ const App: React.FC = () => {
 
         <Route exact path="/add">
           <AddCharacterContainer onAddCharacter={onAddCharacter} />
+        </Route>
+
+        <Route exact path="/episodes">
+          <EpisodesListContainer />
         </Route>
       </Switch>
     </Router>

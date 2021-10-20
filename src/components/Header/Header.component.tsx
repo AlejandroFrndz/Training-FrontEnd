@@ -55,11 +55,20 @@ const Header: React.FC = () => {
         <h4>{t('navbar.add')}</h4>
       </NavLink>
 
+      <NavLink
+        to={'/episodes'}
+        className="nav-item text-white font-weight-bold text-decoration-none p-2"
+        activeClassName={styles.active}
+        data-testid="toEpisodes"
+        id="toEpisodes"
+      >
+        <h4>{t('navbar.episodes')}</h4>
+      </NavLink>
       <div className={styles.flags + ' me-4'}>
         <img
           alt="Flag"
           src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${
-            i18n.resolvedLanguage === 'es' ? 'GB' : 'ES'
+            i18n.resolvedLanguage === 'es' ? 'ES' : 'GB'
           }.svg`}
           onClick={() => {
             i18n.resolvedLanguage === 'es'

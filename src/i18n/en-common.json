@@ -1,7 +1,8 @@
 {
   "navbar": {
     "characters": "Characters",
-    "add": "Add"
+    "add": "Add",
+    "episodes": "Episodes"
   },
   "characterInfo": {
     "name": "Name",
@@ -44,5 +45,28 @@
     "immortalButtonTitle": "This is the immortal character. You cannot vaporize him",
     "immortalButtonTitle_Female": "This is the immortal character. You cannot vaporize her",
     "immortalButtonTitle_Unknown": "This is the immortal character. You cannot vaporize it"
+  },
+  "months": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "episodeInfo": {
+    "Season": "Season",
+    "Episode": "Episode",
+    "Titles": {
+      "Pilot": "Pilot",
+      "Lawnmower Dog": "Lawnmower Dog",
+      "The Wedding Squanchers": "The Wedding Squanchers"
+    }
   }
 }
