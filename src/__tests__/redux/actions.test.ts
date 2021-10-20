@@ -4,10 +4,15 @@ import {
   updateCharacter,
   createCharacter,
   deleteCharacter,
-  ActionTypes,
+  CharacterActionTypes,
   getImmortalCharacter
 } from '../../redux/actions/charactersActions';
-import { Character, NewCharacter } from '../../redux/types';
+import {
+  getEpisodes,
+  updateEpisode,
+  EpisodeActionTypes
+} from '../../redux/actions/episodesActions';
+import { Character, NewCharacter, Episode } from '../../redux/types';
 
 jest.mock('../../http-common');
 const mockHttp = http as jest.Mocked<typeof http>;
@@ -41,10 +46,10 @@ describe('Character Actions', () => {
 
       await getCharacters()(dispatch);
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.GET_CHARACTERS_PENDING
+        type: CharacterActionTypes.GET_CHARACTERS_PENDING
       });
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.GET_CHARACTERS,
+        type: CharacterActionTypes.GET_CHARACTERS,
         payload: fetchedCharacters
       });
     });
@@ -55,10 +60,10 @@ describe('Character Actions', () => {
       await getCharacters()(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.GET_CHARACTERS_PENDING
+        type: CharacterActionTypes.GET_CHARACTERS_PENDING
       });
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.GET_CHARACTERS_ERROR
+        type: CharacterActionTypes.GET_CHARACTERS_ERROR
       });
     });
   });
@@ -80,10 +85,10 @@ describe('Character Actions', () => {
       await updateCharacter(newCharacter)(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.UPDATE_CHARACTERS_PENDING
+        type: CharacterActionTypes.UPDATE_CHARACTERS_PENDING
       });
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.UPDATE_CHARACTERS,
+        type: CharacterActionTypes.UPDATE_CHARACTERS,
         payload: newCharacter
       });
     });
@@ -94,7 +99,7 @@ describe('Character Actions', () => {
       await updateCharacter(newCharacter)(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.UPDATE_CHARACTERS_ERROR
+        type: CharacterActionTypes.UPDATE_CHARACTERS_ERROR
       });
     });
   });
@@ -115,7 +120,7 @@ describe('Character Actions', () => {
       await createCharacter(newCharacter)(dispatch);
 
       expect(dispatch).toHaveBeenLastCalledWith({
-        type: ActionTypes.CREATE_CHARACTER,
+        type: CharacterActionTypes.CREATE_CHARACTER,
         payload: newCharacter
       });
     });
@@ -130,7 +135,7 @@ describe('Character Actions', () => {
       await deleteCharacter(id)(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.DELETE_CHARACTER,
+        type: CharacterActionTypes.DELETE_CHARACTER,
         payload: id
       });
     });
@@ -149,8 +154,94 @@ describe('Character Actions', () => {
       await getImmortalCharacter()(dispatch);
 
       expect(dispatch).toHaveBeenCalledWith({
-        type: ActionTypes.GET_IMMORTAL_CHARACTER,
+        type: CharacterActionTypes.GET_IMMORTAL_CHARACTER,
         payload: id
+      });
+    });
+  });
+});
+
+describe('Episode Actions', () => {
+  const dispatch = jest.fn();
+
+  describe('Get episodes', () => {
+    it('Gets the episodes', async () => {
+      const fetchedEpisodes: Episode[] = [
+        {
+          id: 1,
+          name: 'Pilot',
+          air_date: 'December 2, 2013',
+          episode: 'S01E01',
+          seen: false
+        },
+        {
+          id: 2,
+          name: 'Lawnmower Dog',
+          air_date: 'December 9, 2013',
+          episode: 'S01E02',
+          seen: false
+        }
+      ];
+
+      mockHttp.get.mockResolvedValueOnce({ data: fetchedEpisodes });
+
+      await getEpisodes()(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: EpisodeActionTypes.GET_EPISODES_PENDING
+      });
+      expect(dispatch).toHaveBeenLastCalledWith({
+        type: EpisodeActionTypes.GET_EPISODES,
+        payload: fetchedEpisodes
+      });
+    });
+
+    it('Fails due to network error', async () => {
+      mockHttp.get.mockRejectedValueOnce('Mocked episodes get error');
+
+      await getEpisodes()(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: EpisodeActionTypes.GET_EPISODES_PENDING
+      });
+      expect(dispatch).toHaveBeenLastCalledWith({
+        type: EpisodeActionTypes.GET_EPISODES_ERROR
+      });
+    });
+  });
+
+  describe('Update episode', () => {
+    const newEpisode: Episode = {
+      id: 1,
+      name: 'Pilot',
+      air_date: 'December 2, 2013',
+      episode: 'S01E01',
+      seen: true
+    };
+    it('Updates the episode', async () => {
+      mockHttp.put.mockResolvedValueOnce({ data: newEpisode });
+
+      await updateEpisode(newEpisode)(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: EpisodeActionTypes.UPDATE_EPISODE_PENDING
+      });
+      expect(dispatch).toHaveBeenLastCalledWith({
+        type: EpisodeActionTypes.UPDATE_EPISODE,
+        payload: newEpisode
+      });
+    });
+
+    it('Fails due to network error', async () => {
+      mockHttp.put.mockRejectedValueOnce('Mocked episode put error');
+
+      await updateEpisode(newEpisode)(dispatch);
+
+      expect(dispatch).toHaveBeenCalledWith({
+        type: EpisodeActionTypes.UPDATE_EPISODE_PENDING
+      });
+      expect(dispatch).toHaveBeenLastCalledWith({
+        type: EpisodeActionTypes.UPDATE_EPISODE_ERROR
       });
     });
   });

@@ -17,7 +17,7 @@ export interface NewCharacter {
   image: string;
 }
 
-export interface State {
+export interface CharacterState {
   characters: Character[];
   loadingGet: boolean;
   errorGet: boolean;
@@ -28,4 +28,20 @@ export interface State {
 
 export interface ImmortalCharacter {
   id: number;
+}
+
+export interface Episode {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  seen: boolean;
+}
+
+export interface EpisodeState {
+  episodes: Episode[];
+  loadingGet: boolean;
+  errorGet: boolean;
+  loadingUpdate: boolean;
+  errorUpdate: boolean;
 }

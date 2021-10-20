@@ -1,7 +1,10 @@
-import { Action, ActionTypes } from '../actions/charactersActions';
-import { State } from '../types';
+import {
+  CharacterAction,
+  CharacterActionTypes
+} from '../actions/charactersActions';
+import { CharacterState } from '../types';
 
-const initialState: State = {
+const initialState: CharacterState = {
   characters: [],
   loadingGet: true,
   errorGet: false,
@@ -11,68 +14,75 @@ const initialState: State = {
 };
 
 // eslint-disable-next-line
-const reducer = (state: State = initialState, action: Action) => {
-  switch (action.type) {
-    case ActionTypes.GET_CHARACTERS:
+const reducer = (
+  state: CharacterState = initialState,
+  CharacterAction: CharacterAction
+) => {
+  switch (CharacterAction.type) {
+    case CharacterActionTypes.GET_CHARACTERS:
       return {
         ...state,
-        characters: [...action.payload],
+        characters: [...CharacterAction.payload],
         loadingGet: false
       };
 
-    case ActionTypes.GET_CHARACTERS_PENDING:
+    case CharacterActionTypes.GET_CHARACTERS_PENDING:
       return {
         ...state,
         loadingGet: true
       };
 
-    case ActionTypes.GET_CHARACTERS_ERROR:
+    case CharacterActionTypes.GET_CHARACTERS_ERROR:
       return {
         ...state,
         loadingGet: false,
         errorGet: true
       };
 
-    case ActionTypes.UPDATE_CHARACTERS:
+    case CharacterActionTypes.UPDATE_CHARACTERS:
       return {
         ...state,
         characters: [
           ...state.characters.map((ele) =>
-            ele.id === action.payload.id ? action.payload : ele
+            ele.id === CharacterAction.payload.id
+              ? CharacterAction.payload
+              : ele
           )
         ],
         loadingUpdate: false
       };
 
-    case ActionTypes.UPDATE_CHARACTERS_PENDING:
+    case CharacterActionTypes.UPDATE_CHARACTERS_PENDING:
       return {
         ...state,
         loadingUpdate: true
       };
 
-    case ActionTypes.UPDATE_CHARACTERS_ERROR:
+    case CharacterActionTypes.UPDATE_CHARACTERS_ERROR:
       return {
         ...state,
         loadingUpdate: false,
         errorUpdate: true
       };
 
-    case ActionTypes.CREATE_CHARACTER:
+    case CharacterActionTypes.CREATE_CHARACTER:
       return {
         ...state,
-        characters: [...state.characters, action.payload]
+        characters: [...state.characters, CharacterAction.payload]
       };
 
-    case ActionTypes.DELETE_CHARACTER:
+    case CharacterActionTypes.DELETE_CHARACTER:
       return {
         ...state,
-        characters: state.characters.filter((ele) => ele.id !== action.payload)
+        characters: state.characters.filter(
+          (ele) => ele.id !== CharacterAction.payload
+        )
       };
 
-    case ActionTypes.GET_IMMORTAL_CHARACTER:
+    case CharacterActionTypes.GET_IMMORTAL_CHARACTER:
       return {
         ...state,
-        immortalCharacter: action.payload
+        immortalCharacter: CharacterAction.payload
       };
     default:
       return state;
