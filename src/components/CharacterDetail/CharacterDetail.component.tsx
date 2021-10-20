@@ -52,10 +52,13 @@ const CharacterDetail: React.FC<Props> = (props) => {
   };
 
   return (
-    <div className={`character container ${styles.charWrapper}`}>
+    <div className={`character container ${styles.charWrapper} p-2`}>
       <div className="row">
         <h1 className="text-center">
-          {t('characterInfo.name')}: {character.name}
+          {t('characterInfo.name')}: {character.name}{' '}
+          <span className="badge rounded-pill bg-warning">
+            {!allowVaporize ? t('buttons.immortal') : ''}
+          </span>
         </h1>
       </div>
       <div className="row">

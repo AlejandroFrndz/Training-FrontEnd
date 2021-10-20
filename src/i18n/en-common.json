@@ -30,7 +30,8 @@
     "revive": "Revive",
     "vaporize": "Vaporize",
     "addCharacter": "Add Character",
-    "spare": "Spare"
+    "spare": "Spare",
+    "immortal": "Immortal"
   },
   "warnings": {
     "apiError": "Couldn't get characters from server. Please try reloading the page",

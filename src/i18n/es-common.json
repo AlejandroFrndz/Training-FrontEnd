@@ -33,7 +33,8 @@
     "revive": "Revivir",
     "vaporize": "Vaporizar",
     "addCharacter": "Añadir Personaje",
-    "spare": "Perdonar"
+    "spare": "Perdonar",
+    "immortal": "Inmortal"
   },
   "warnings": {
     "apiError": "No se pudieron recuperar los personajes del servidor. Por favor, prueba a recargar la página",
