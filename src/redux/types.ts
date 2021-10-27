@@ -45,3 +45,12 @@ export interface EpisodeState {
   loadingUpdate: boolean;
   errorUpdate: boolean;
 }
+
+export interface AuthState {
+  token: string;
+  username: string;
+  isAuthenticated: boolean;
+  isLoading: boolean;
+  error: boolean;
+  msg: string;
+}

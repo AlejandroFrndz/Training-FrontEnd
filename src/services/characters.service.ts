@@ -5,7 +5,7 @@ class CharactersService {
   private resource: string;
 
   constructor() {
-    this.resource = '/characters';
+    this.resource = '/api/characters';
   }
 
   getAll() {
@@ -37,7 +37,7 @@ class CharactersService {
   }
 
   getImmortalCharacter() {
-    return http.get<ImmortalCharacter>('/immortalCharacter');
+    return http.get<ImmortalCharacter>(`${this.resource}/immortalCharacter`);
   }
 }
 

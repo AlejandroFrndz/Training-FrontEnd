@@ -6,7 +6,7 @@ import { CharacterState } from '../types';
 
 const initialState: CharacterState = {
   characters: [],
-  loadingGet: true,
+  loadingGet: false,
   errorGet: false,
   loadingUpdate: false,
   errorUpdate: false,

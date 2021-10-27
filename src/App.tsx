@@ -19,6 +19,7 @@ import { useTranslation } from 'react-i18next';
 import Home from './components/Home/Home.component';
 import Loader from 'react-loader-spinner';
 import EpisodesListContainer from './containers/EpisodesList.container';
+import AuthContainer from './containers/Auth.container';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -35,6 +36,7 @@ const App: React.FC = () => {
   const loadingUpdate = useSelector(
     (state: State) => state.characters.loadingUpdate
   );
+  const auth = useSelector((state: State) => state.auth);
 
   /*
   const errorUpdate = useSelector(
@@ -43,9 +45,11 @@ const App: React.FC = () => {
   */
 
   useEffect(() => {
-    dispatch(getCharacters());
-    dispatch(getImmortalCharacter());
-  }, []);
+    if (auth.isAuthenticated) {
+      dispatch(getCharacters());
+      dispatch(getImmortalCharacter());
+    }
+  }, [auth.isAuthenticated]);
 
   const onKillCharacter = async (character: Character) => {
     if (character.status === 'Alive') {
@@ -80,9 +84,18 @@ const App: React.FC = () => {
 
       <Switch>
         <Route exact path="/">
-          <Home
-            character={characters.filter((e) => e.id === immortalCharacter)[0]}
-          />
+          {auth.isAuthenticated ? (
+            <>
+              <h1>{auth.username}</h1>
+              <Home
+                character={
+                  characters.filter((e) => e.id === immortalCharacter)[0]
+                }
+              />
+            </>
+          ) : (
+            <AuthContainer />
+          )}
         </Route>
 
         <Route exact path="/characters">
