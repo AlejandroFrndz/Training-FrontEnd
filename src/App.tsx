@@ -85,20 +85,7 @@ const App: React.FC = () => {
           />
         </Route>
 
-        <Route exact path="/characters">
-          {errorGet ? (
-            <h1>{t('warnings.apiError')}</h1>
-          ) : (
-            <CharactersContainer
-              characters={characters}
-              loadingKill={loadingUpdate}
-              onKill={onKillCharacter}
-              onDelete={onDeleteCharacter}
-            />
-          )}
-        </Route>
-
-        <Route path="/characters/:id">
+        <Route exact path="/characters/:id?">
           {errorGet ? (
             <h1>{t('warnings.apiError')}</h1>
           ) : (
