@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import AddCharacter from '../components/AddCharacter/AddCharacter.component';
-import { NewCharacter } from '../redux/types';
+import { Character } from '../redux/types';
 
 interface Props {
-  onAddCharacter: (character: NewCharacter) => Promise<void>;
+  onAddCharacter: (character: Character) => Promise<void>;
 }
 
 const AddCharacterContainer: React.FC<Props> = (props) => {
@@ -17,7 +17,7 @@ const AddCharacterContainer: React.FC<Props> = (props) => {
   const { onAddCharacter } = props;
   const history = useHistory();
 
-  const handleSubmit = (character: NewCharacter) => {
+  const handleSubmit = (character: Character) => {
     onAddCharacter(character);
     history.push('/characters');
   };

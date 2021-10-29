@@ -47,7 +47,7 @@ const CharacterDetail: React.FC<Props> = (props) => {
     });
 
     if (confirm) {
-      onDelete(character.id);
+      if (character.id !== undefined) onDelete(character.id);
     }
   };
 

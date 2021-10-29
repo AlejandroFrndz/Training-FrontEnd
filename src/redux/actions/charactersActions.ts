@@ -1,5 +1,5 @@
 import CharactersService from '../../services/characters.service';
-import { Character, NewCharacter } from '../types';
+import { Character } from '../types';
 import { Dispatch } from 'redux';
 
 export enum CharacterActionTypes {
@@ -96,11 +96,13 @@ export const updateCharacter = (character: Character) => {
       type: CharacterActionTypes.UPDATE_CHARACTERS_PENDING
     });
     try {
-      const res = await CharactersService.update(character, character.id);
-      dispatch({
-        type: CharacterActionTypes.UPDATE_CHARACTERS,
-        payload: res.data
-      });
+      if (character.id !== undefined) {
+        const res = await CharactersService.update(character, character.id);
+        dispatch({
+          type: CharacterActionTypes.UPDATE_CHARACTERS,
+          payload: res.data
+        });
+      }
     } catch (e) {
       console.log(e);
       dispatch({
@@ -111,7 +113,7 @@ export const updateCharacter = (character: Character) => {
 };
 
 // eslint-disable-next-line
-export const createCharacter = (newCharacter: NewCharacter) => {
+export const createCharacter = (newCharacter: Character) => {
   // eslint-disable-next-line
   return async (dispatch: Dispatch<CharacterAction>) => {
     const res = await CharactersService.create(newCharacter);

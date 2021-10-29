@@ -12,7 +12,7 @@ import {
   updateEpisode,
   EpisodeActionTypes
 } from '../../redux/actions/episodesActions';
-import { Character, NewCharacter, Episode } from '../../redux/types';
+import { Character, Episode } from '../../redux/types';
 
 jest.mock('../../http-common');
 const mockHttp = http as jest.Mocked<typeof http>;
@@ -105,7 +105,7 @@ describe('Character Actions', () => {
   });
 
   describe('Create Character', () => {
-    const newCharacter: NewCharacter = {
+    const newCharacter: Character = {
       name: 'Updated Name',
       species: 'Updated Species',
       status: 'Alive',

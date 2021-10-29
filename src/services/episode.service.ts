@@ -5,7 +5,7 @@ class EpisodeService {
   private resource: string;
 
   constructor() {
-    this.resource = '/episodes';
+    this.resource = '/api/episodes';
   }
 
   getAll() {

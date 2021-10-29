@@ -14,7 +14,7 @@ import {
 import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
 import AddCharacterContainer from './containers/AddCharacter.container';
-import { Character, NewCharacter } from './redux/types';
+import { Character } from './redux/types';
 import { useTranslation } from 'react-i18next';
 import Home from './components/Home/Home.component';
 import Loader from 'react-loader-spinner';
@@ -57,7 +57,7 @@ const App: React.FC = () => {
     dispatch(updateCharacter(character));
   };
 
-  const onAddCharacter = async (character: NewCharacter) => {
+  const onAddCharacter = async (character: Character) => {
     dispatch(createCharacter(character));
   };
 

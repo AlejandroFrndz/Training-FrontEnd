@@ -1,11 +1,11 @@
 import http from '../http-common';
-import { Character, NewCharacter, ImmortalCharacter } from '../redux/types';
+import { Character, ImmortalCharacter } from '../redux/types';
 
 class CharactersService {
   private resource: string;
 
   constructor() {
-    this.resource = '/characters';
+    this.resource = '/api/characters';
   }
 
   getAll() {
@@ -16,7 +16,7 @@ class CharactersService {
     return http.get<Character>(`${this.resource}/${id}`);
   }
 
-  create(data: NewCharacter) {
+  create(data: Character) {
     return http.post<Character>(this.resource, data);
   }
 
@@ -37,7 +37,7 @@ class CharactersService {
   }
 
   getImmortalCharacter() {
-    return http.get<ImmortalCharacter>('/immortalCharacter');
+    return http.get<ImmortalCharacter>('/api/characters/immortalCharacter');
   }
 }
 
