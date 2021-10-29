@@ -6,6 +6,14 @@ import Home, { Props } from '../../../components/Home/Home.component';
 
 let props: Props;
 
+const customRender = (props: Props) => {
+  render(
+    <I18nextProvider i18n={i18n}>
+      <Home {...props} />
+    </I18nextProvider>
+  );
+};
+
 describe('<Home />', () => {
   beforeEach(() => {
     props = {
@@ -22,11 +30,7 @@ describe('<Home />', () => {
   });
 
   test('All elements are displayed', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <Home {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     expect(
       screen.getByText("Today's immortal character is")
@@ -41,11 +45,7 @@ describe('<Home />', () => {
   test('If character is undefined, it displays appropiate message', () => {
     props.character = undefined;
 
-    render(
-      <I18nextProvider i18n={i18n}>
-        <Home {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     expect(screen.queryByText('Rick Sanchez')).not.toBeInTheDocument();
     expect(screen.getByText('No one is immortal today')).toBeInTheDocument();

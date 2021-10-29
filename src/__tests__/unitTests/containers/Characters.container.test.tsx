@@ -11,6 +11,18 @@ import i18n from '../../../i18n/i18n';
 import { Provider } from 'react-redux';
 import { store } from '../../../redux/store';
 
+const customRender = (history: MemoryHistory, Component: JSX.Element) => {
+  render(
+    <Provider store={store}>
+      <I18nextProvider i18n={i18n}>
+        <Router history={history}>
+          <Route path="/characters/:id">{Component}</Route>
+        </Router>
+      </I18nextProvider>
+    </Provider>
+  );
+};
+
 describe('<CharactersContainer />', () => {
   let history: MemoryHistory;
   const onKill = jest.fn(async (character: Character) => {
@@ -44,17 +56,7 @@ describe('<CharactersContainer />', () => {
   test('If a character route and character data are provided, it should display the detail', () => {
     history.push('/characters/1');
 
-    render(
-      <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <Router history={history}>
-            <Route path="/characters/:id">
-              <CharactersContainer {...props} />
-            </Route>
-          </Router>
-        </I18nextProvider>
-      </Provider>
-    );
+    customRender(history, <CharactersContainer {...props} />);
 
     expect(screen.getByText('Vaporize')).toBeInTheDocument();
   });
@@ -62,17 +64,7 @@ describe('<CharactersContainer />', () => {
   test('If a character route is given but no character data is provided, it should go back and display the complete list', () => {
     history.push('/characters/2');
 
-    render(
-      <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <Router history={history}>
-            <Route path="/characters/:id">
-              <CharactersContainer {...props} />
-            </Route>
-          </Router>
-        </I18nextProvider>
-      </Provider>
-    );
+    customRender(history, <CharactersContainer {...props} />);
 
     expect(screen.queryByText('Vaporize')).not.toBeInTheDocument();
     expect(history.location.pathname).toBe('/characters');
