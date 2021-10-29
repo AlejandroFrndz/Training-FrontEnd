@@ -46,32 +46,28 @@ export type EpisodeAction =
   | UpdateEpisodeErrorAction;
 
 //eslint-disable-next-line
-export const getEpisodes = () => {
-  //eslint-disable-next-line
-  return async (dispatch: Dispatch<EpisodeAction>) => {
-    dispatch({
-      type: EpisodeActionTypes.GET_EPISODES_PENDING
-    });
+export const getEpisodes = () => async (dispatch: Dispatch<EpisodeAction>) => {
+  dispatch({
+    type: EpisodeActionTypes.GET_EPISODES_PENDING
+  });
 
-    try {
-      const res = await EpisodeService.getAll();
-      dispatch({
-        type: EpisodeActionTypes.GET_EPISODES,
-        payload: res.data
-      });
-    } catch (e) {
-      console.error(e);
-      dispatch({
-        type: EpisodeActionTypes.GET_EPISODES_ERROR
-      });
-    }
-  };
+  try {
+    const res = await EpisodeService.getAll();
+    dispatch({
+      type: EpisodeActionTypes.GET_EPISODES,
+      payload: res.data
+    });
+  } catch (e) {
+    console.error(e);
+    dispatch({
+      type: EpisodeActionTypes.GET_EPISODES_ERROR
+    });
+  }
 };
 
 // eslint-disable-netx-line
-export const updateEpisode = (episode: Episode) => {
-  //eslint-disable-next-line
-  return async (dispatch: Dispatch<EpisodeAction>) => {
+export const updateEpisode =
+  (episode: Episode) => async (dispatch: Dispatch<EpisodeAction>) => {
     dispatch({
       type: EpisodeActionTypes.UPDATE_EPISODE_PENDING
     });
@@ -89,4 +85,3 @@ export const updateEpisode = (episode: Episode) => {
       });
     }
   };
-};

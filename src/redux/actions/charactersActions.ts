@@ -67,9 +67,8 @@ export type CharacterAction =
   | GetImmortalCharacter;
 
 // eslint-disable-next-line
-export const getCharacters = () => {
-  // eslint-disable-next-line
-  return async (dispatch: Dispatch<CharacterAction>) => {
+export const getCharacters =
+  () => async (dispatch: Dispatch<CharacterAction>) => {
     dispatch({
       type: CharacterActionTypes.GET_CHARACTERS_PENDING
     });
@@ -86,12 +85,10 @@ export const getCharacters = () => {
       });
     }
   };
-};
 
 // eslint-disable-next-line
-export const updateCharacter = (character: Character) => {
-  // eslint-disable-next-line
-  return async (dispatch: Dispatch<CharacterAction>) => {
+export const updateCharacter =
+  (character: Character) => async (dispatch: Dispatch<CharacterAction>) => {
     dispatch({
       type: CharacterActionTypes.UPDATE_CHARACTERS_PENDING
     });
@@ -110,24 +107,20 @@ export const updateCharacter = (character: Character) => {
       });
     }
   };
-};
 
 // eslint-disable-next-line
-export const createCharacter = (newCharacter: Character) => {
-  // eslint-disable-next-line
-  return async (dispatch: Dispatch<CharacterAction>) => {
+export const createCharacter =
+  (newCharacter: Character) => async (dispatch: Dispatch<CharacterAction>) => {
     const res = await CharactersService.create(newCharacter);
     dispatch({
       type: CharacterActionTypes.CREATE_CHARACTER,
       payload: res.data
     });
   };
-};
 
 // eslint-disable-next-line
-export const deleteCharacter = (id: number) => {
-  // eslint-disable-next-line
-  return async (dispatch: Dispatch<CharacterAction>) => {
+export const deleteCharacter =
+  (id: number) => async (dispatch: Dispatch<CharacterAction>) => {
     // eslint-disable-next-line
     const res = await CharactersService.delete(id);
     dispatch({
@@ -135,15 +128,12 @@ export const deleteCharacter = (id: number) => {
       payload: id
     });
   };
-};
 
-export const getImmortalCharacter = () => {
-  // eslint-disable-next-line
-  return async (dispatch: Dispatch<CharacterAction>) => {
+export const getImmortalCharacter =
+  () => async (dispatch: Dispatch<CharacterAction>) => {
     const res = await CharactersService.getImmortalCharacter();
     dispatch({
       type: CharacterActionTypes.GET_IMMORTAL_CHARACTER,
       payload: res.data.id
     });
   };
-};
