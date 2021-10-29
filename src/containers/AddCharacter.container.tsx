@@ -2,23 +2,21 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import AddCharacter from '../components/AddCharacter/AddCharacter.component';
 import { Character } from '../redux/types';
+import { useDispatch } from 'react-redux';
+import { createCharacter } from '../redux/actions/charactersActions';
 
-interface Props {
-  onAddCharacter: (character: Character) => Promise<void>;
-}
-
-const AddCharacterContainer: React.FC<Props> = (props) => {
+const AddCharacterContainer: React.FC = () => {
   const [name, setName] = useState('');
   const [status, setStatus] = useState('Alive');
   const [species, setSpecies] = useState('Unknown');
   const [gender, setGender] = useState('Unknown');
   const [image, setImage] = useState('');
-
-  const { onAddCharacter } = props;
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const handleSubmit = (character: Character) => {
-    onAddCharacter(character);
+    dispatch(createCharacter(character));
+
     history.push('/characters');
   };
 
