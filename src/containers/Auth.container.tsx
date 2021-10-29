@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Login from '../components/Login/Login.component';
+import { State } from '../redux/reducers/rootReducer';
 import { login } from '../redux/actions/authActions';
 
 const AuthContainer: React.FC = () => {
@@ -8,6 +9,9 @@ const AuthContainer: React.FC = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+
+  const error = useSelector((state: State) => state.auth.error);
+  const errorMsg = useSelector((state: State) => state.auth.msg);
 
   const handleLoginSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,6 +27,8 @@ const AuthContainer: React.FC = () => {
         password={password}
         setPassword={setPassword}
         handleSubmit={handleLoginSubmit}
+        error={error}
+        msg={errorMsg}
       />
     </div>
   );

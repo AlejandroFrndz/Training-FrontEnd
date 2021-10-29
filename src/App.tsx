@@ -11,6 +11,7 @@ import {
   deleteCharacter,
   getImmortalCharacter
 } from './redux/actions/charactersActions';
+import { checkPersistedToken } from './redux/actions/authActions';
 import { State } from './redux/reducers/rootReducer';
 import Header from './components/Header/Header.component';
 import AddCharacterContainer from './containers/AddCharacter.container';
@@ -45,11 +46,10 @@ const App: React.FC = () => {
   */
 
   useEffect(() => {
-    if (auth.isAuthenticated) {
-      dispatch(getCharacters());
-      dispatch(getImmortalCharacter());
-    }
-  }, [auth.isAuthenticated]);
+    dispatch(checkPersistedToken());
+    dispatch(getCharacters());
+    dispatch(getImmortalCharacter());
+  }, []);
 
   const onKillCharacter = async (character: Character) => {
     if (character.status === 'Alive') {

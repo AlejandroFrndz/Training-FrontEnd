@@ -6,12 +6,26 @@ interface Props {
   password: string;
   setPassword: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: (e: React.FormEvent) => void;
+  error: boolean;
+  msg: string;
 }
 const Login: React.FC<Props> = (props) => {
-  const { name, setName, password, setPassword, handleSubmit } = props;
+  const { name, setName, password, setPassword, handleSubmit, error, msg } =
+    props;
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="container">
+        {error ? (
+          <div className="row">
+            <div
+              className="alert alert-danger text-center text-capitalize"
+              role="alert"
+            >
+              {msg}
+            </div>
+          </div>
+        ) : null}
+
         <div className="row mb-4">
           <div className="col-4" />
           <div className="form-group mb-2 col-4 text-center">
