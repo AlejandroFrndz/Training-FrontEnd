@@ -4,8 +4,8 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
-import CharacterList from '../../components/CharactersList/CharactersList.component';
+import i18n from '../../../i18n/i18n';
+import CharacterList from '../../../components/CharactersList/CharactersList.component';
 
 describe('<CharacterList />', () => {
   const onGoBack = jest.fn();

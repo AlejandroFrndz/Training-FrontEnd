@@ -1,10 +1,10 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Header from '../../components/Header/Header.component';
+import Header from '../../../components/Header/Header.component';
 import { Router } from 'react-router';
 import { createMemoryHistory } from 'history';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
+import i18n from '../../../i18n/i18n';
 
 describe('<Header />', () => {
   test('Header navigation elements are correct', () => {

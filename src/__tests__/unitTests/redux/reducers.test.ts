@@ -1,8 +1,8 @@
-import { CharacterActionTypes } from '../../redux/actions/charactersActions';
-import characterReducer from '../../redux/reducers/charactersReducer';
-import { EpisodeActionTypes } from '../../redux/actions/episodesActions';
-import episodeReducer from '../../redux/reducers/episodesReducer';
-import { CharacterState, EpisodeState, Episode } from '../../redux/types';
+import { CharacterActionTypes } from '../../../redux/actions/charactersActions';
+import characterReducer from '../../../redux/reducers/charactersReducer';
+import { EpisodeActionTypes } from '../../../redux/actions/episodesActions';
+import episodeReducer from '../../../redux/reducers/episodesReducer';
+import { CharacterState, EpisodeState, Episode } from '../../../redux/types';
 
 describe('Characters Reducer', () => {
   const prevState: CharacterState = {

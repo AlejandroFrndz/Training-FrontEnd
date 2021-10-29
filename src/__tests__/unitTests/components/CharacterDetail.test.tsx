@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Character } from '../../redux/types';
+import { Character } from '../../../redux/types';
 import CharacterDetail, {
   Props
-} from '../../components/CharacterDetail/CharacterDetail.component';
+} from '../../../components/CharacterDetail/CharacterDetail.component';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
+import i18n from '../../../i18n/i18n';
 
 describe('<CharacterDetail />', () => {
   const onGoBack = jest.fn();

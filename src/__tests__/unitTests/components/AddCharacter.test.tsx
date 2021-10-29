@@ -1,10 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import AddCharacter from '../../components/AddCharacter/AddCharacter.component';
+import AddCharacter from '../../../components/AddCharacter/AddCharacter.component';
 import userEvent from '@testing-library/user-event';
-import { Character } from '../../redux/types';
+import { Character } from '../../../redux/types';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
+import i18n from '../../../i18n/i18n';
 
 describe('<AddCharacter />', () => {
   const props = {
