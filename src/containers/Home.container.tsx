@@ -10,7 +10,7 @@ const HomeContainer = () => {
   );
 
   return (
-    <Home character={characters.filter((e) => e.id === immortalCharacter)[0]} />
+    <Home character={characters.find((e) => e.id === immortalCharacter)} />
   );
 };
 
