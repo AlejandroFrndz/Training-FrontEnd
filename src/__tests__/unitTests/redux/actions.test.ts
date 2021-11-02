@@ -1,4 +1,4 @@
-import http from '../../http-common';
+import http from '../../../http-common';
 import {
   getCharacters,
   updateCharacter,
@@ -6,15 +6,15 @@ import {
   deleteCharacter,
   CharacterActionTypes,
   getImmortalCharacter
-} from '../../redux/actions/charactersActions';
+} from '../../../redux/actions/charactersActions';
 import {
   getEpisodes,
   updateEpisode,
   EpisodeActionTypes
-} from '../../redux/actions/episodesActions';
-import { Character, NewCharacter, Episode } from '../../redux/types';
+} from '../../../redux/actions/episodesActions';
+import { Character, Episode } from '../../../redux/types';
 
-jest.mock('../../http-common');
+jest.mock('../../../http-common');
 const mockHttp = http as jest.Mocked<typeof http>;
 
 describe('Character Actions', () => {
@@ -105,7 +105,7 @@ describe('Character Actions', () => {
   });
 
   describe('Create Character', () => {
-    const newCharacter: NewCharacter = {
+    const newCharacter: Character = {
       name: 'Updated Name',
       species: 'Updated Species',
       status: 'Alive',

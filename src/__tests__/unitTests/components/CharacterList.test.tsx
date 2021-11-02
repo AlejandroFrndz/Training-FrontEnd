@@ -4,8 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { createMemoryHistory } from 'history';
 import { Router } from 'react-router-dom';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
-import CharacterList from '../../components/CharactersList/CharactersList.component';
+import i18n from '../../../i18n/i18n';
+import CharacterList from '../../../components/CharactersList/CharactersList.component';
+import { Character } from '../../../redux/types';
 
 describe('<CharacterList />', () => {
   const onGoBack = jest.fn();
@@ -32,17 +33,7 @@ describe('<CharacterList />', () => {
 
   const history = createMemoryHistory();
 
-  test('If the characters array is empty, it should display appropiate message', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <CharacterList characters={[]} onGoBack={onGoBack} />
-      </I18nextProvider>
-    );
-    const div = screen.getByTestId('innerDiv');
-    expect(div).toHaveTextContent('No characters in record');
-  });
-
-  test('Characters are properly displayed', () => {
+  const customRender = (characters: Character[]) => {
     render(
       <I18nextProvider i18n={i18n}>
         <Router history={history}>
@@ -50,6 +41,16 @@ describe('<CharacterList />', () => {
         </Router>
       </I18nextProvider>
     );
+  };
+
+  test('If the characters array is empty, it should display appropiate message', () => {
+    customRender([]);
+    const div = screen.getByTestId('innerDiv');
+    expect(div).toHaveTextContent('No characters in record');
+  });
+
+  test('Characters are properly displayed', () => {
+    customRender(characters);
     expect(screen.getByText('Rick Sanchez')).toBeInTheDocument();
     expect(screen.getByText('Morty Smith')).toBeInTheDocument();
 
@@ -59,13 +60,7 @@ describe('<CharacterList />', () => {
   });
 
   test('Navigation to character detail works', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <Router history={history}>
-          <CharacterList characters={characters} onGoBack={onGoBack} />
-        </Router>
-      </I18nextProvider>
-    );
+    customRender(characters);
 
     userEvent.click(screen.getByText('Rick Sanchez'));
     expect(history.location.pathname).toBe('/characters/1');

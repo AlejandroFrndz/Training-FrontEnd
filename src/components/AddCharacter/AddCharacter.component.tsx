@@ -1,9 +1,9 @@
 import React from 'react';
-import { NewCharacter } from '../../redux/types';
+import { Character } from '../../redux/types';
 import { useTranslation } from 'react-i18next';
 
 interface Props {
-  handleSubmit: (character: NewCharacter) => void;
+  handleSubmit: (character: Character) => void;
   name: string;
   setName: React.Dispatch<React.SetStateAction<string>>;
   status: string;

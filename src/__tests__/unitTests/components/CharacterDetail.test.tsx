@@ -1,12 +1,20 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { Character } from '../../redux/types';
+import { Character } from '../../../redux/types';
 import CharacterDetail, {
   Props
-} from '../../components/CharacterDetail/CharacterDetail.component';
+} from '../../../components/CharacterDetail/CharacterDetail.component';
 import { I18nextProvider } from 'react-i18next';
-import i18n from '../../i18n/i18n';
+import i18n from '../../../i18n/i18n';
+
+const customRender = (props: Props) => {
+  render(
+    <I18nextProvider i18n={i18n}>
+      <CharacterDetail {...props} />
+    </I18nextProvider>
+  );
+};
 
 describe('<CharacterDetail />', () => {
   const onGoBack = jest.fn();
@@ -41,11 +49,7 @@ describe('<CharacterDetail />', () => {
   });
 
   test('All elements are displayed', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <CharacterDetail {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     expect(screen.getByText('Name: Rick Sanchez')).toBeInTheDocument();
     expect(screen.getByText('Species: Human')).toBeInTheDocument();
@@ -57,11 +61,7 @@ describe('<CharacterDetail />', () => {
   });
 
   test('Button functionality is correct', () => {
-    render(
-      <I18nextProvider i18n={i18n}>
-        <CharacterDetail {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     userEvent.click(screen.getByText('Revive'));
     expect(onKill).toHaveBeenCalled();
@@ -77,11 +77,7 @@ describe('<CharacterDetail />', () => {
 
   test('If loadingKill is active, kill button should not be active', () => {
     props.loadingKill = true;
-    render(
-      <I18nextProvider i18n={i18n}>
-        <CharacterDetail {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     userEvent.click(screen.getByText('Revive'));
     expect(onKill).not.toHaveBeenCalled();
@@ -90,11 +86,7 @@ describe('<CharacterDetail />', () => {
   test('If allowVaporize is false, vaporize button should not be active', () => {
     props.allowVaporize = false;
 
-    render(
-      <I18nextProvider i18n={i18n}>
-        <CharacterDetail {...props} />
-      </I18nextProvider>
-    );
+    customRender(props);
 
     userEvent.click(screen.getByText('Vaporize'));
     expect(onDelete).not.toHaveBeenCalled();
